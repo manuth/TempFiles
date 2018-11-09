@@ -14,7 +14,7 @@ export class TempDirectory extends TempFileSystem
      * @param options
      * The options for the initialization.
      */
-    public constructor(options: Options)
+    public constructor(options?: Options)
     {
         super(options);
     }
