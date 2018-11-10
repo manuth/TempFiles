@@ -1,0 +1,31 @@
+{
+  "name": "temp-filesystem",
+  "version": "1.0.0",
+  "description": "Provides the functionality to handle temporary files and directories the object-oriented way.",
+  "scripts": {
+    "watch": "tsc -p . --watch",
+    "compile": "tsc -p .",
+    "lint": "tslint -p ./ -t verbose",
+    "test": "mocha",
+    "prepare": "npm run compile"
+  },
+  "author": {
+    "name": "Manuel Thalmann",
+    "email": "m@nuth.ch"
+  },
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "devDependencies": {
+    "@types/fs-extra": "^5.0.4",
+    "@types/mocha": "^5.2.5",
+    "@types/node": "^10.12.1",
+    "mocha": "^5.2.0",
+    "tslint": "^5.11.0",
+    "typescript": "^3.1.5"
+  },
+  "dependencies": {
+    "@types/tmp": "0.0.33",
+    "fs-extra": "^7.0.1",
+    "tmp": "0.0.33"
+  }
+}
