@@ -1,6 +1,6 @@
 {
   "name": "temp-filesystem",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Provides the functionality to handle temporary files and directories the object-oriented way.",
   "scripts": {
     "watch": "tsc -p . --watch",
