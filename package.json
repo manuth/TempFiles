@@ -9,9 +9,28 @@
     "test": "mocha",
     "prepare": "npm run compile"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/manuth/TempFileSystem.git"
+  },
+  "keywords": [
+    "filesystem",
+    "temporary",
+    "file",
+    "directory"
+  ],
   "author": "Manuel Thalmann <m@nuth.ch>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/manuth/TempFileSystem/issues"
+  },
+  "homepage": "https://github.com/manuth/TempFileSystem#readme",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
   "devDependencies": {
     "@types/fs-extra": "^5.0.4",
     "@types/mocha": "^5.2.5",
@@ -24,24 +43,5 @@
     "@types/tmp": "0.0.33",
     "fs-extra": "^7.0.1",
     "tmp": "0.0.33"
-  },
-  "directories": {
-    "lib": "lib",
-    "test": "test"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/manuth/TempFileSystem.git"
-  },
-  "keywords": [
-    "filesystem",
-    "temporary",
-    "file",
-    "directory"
-  ],
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/manuth/TempFileSystem/issues"
-  },
-  "homepage": "https://github.com/manuth/TempFileSystem#readme"
+  }
 }
