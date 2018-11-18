@@ -2,6 +2,28 @@
   "name": "temp-filesystem",
   "version": "1.0.1",
   "description": "Provides the functionality to handle temporary files and directories the object-oriented way.",
+  "author": "Manuel Thalmann <m@nuth.ch>",
+  "license": "MIT",
+  "keywsords": [
+    "filesystem",
+    "temporary",
+    "file",
+    "directory"
+  ],
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/manuth/TempFileSystem.git"
+  },
+  "bugs": {
+    "url": "https://github.com/manuth/TempFileSystem/issues"
+  },
+  "homepage": "https://github.com/manuth/TempFileSystem#readme",
   "scripts": {
     "watch": "tsc -p . --watch",
     "compile": "tsc -p .",
@@ -9,27 +31,10 @@
     "test": "mocha",
     "prepare": "npm run compile"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/manuth/TempFileSystem.git"
-  },
-  "keywords": [
-    "filesystem",
-    "temporary",
-    "file",
-    "directory"
-  ],
-  "author": "Manuel Thalmann <m@nuth.ch>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/manuth/TempFileSystem/issues"
-  },
-  "homepage": "https://github.com/manuth/TempFileSystem#readme",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
-  "directories": {
-    "lib": "lib",
-    "test": "test"
+  "dependencies": {
+    "@types/tmp": "0.0.33",
+    "fs-extra": "^7.0.1",
+    "tmp": "0.0.33"
   },
   "devDependencies": {
     "@types/fs-extra": "^5.0.4",
@@ -38,10 +43,5 @@
     "mocha": "^5.2.0",
     "tslint": "^5.11.0",
     "typescript": "^3.1.5"
-  },
-  "dependencies": {
-    "@types/tmp": "0.0.33",
-    "fs-extra": "^7.0.1",
-    "tmp": "0.0.33"
   }
 }
