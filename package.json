@@ -1,6 +1,6 @@
 {
   "name": "temp-filesystem",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Provides the functionality to handle temporary files and directories the object-oriented way.",
   "author": "Manuel Thalmann <m@nuth.ch>",
   "license": "MIT",
