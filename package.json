@@ -1,6 +1,6 @@
 {
   "name": "temp-filesystem",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Provides the functionality to handle temporary files and directories the object-oriented way.",
   "author": "Manuel Thalmann <m@nuth.ch>",
   "license": "MIT",
@@ -25,8 +25,8 @@
   },
   "homepage": "https://github.com/manuth/TempFileSystem#readme",
   "scripts": {
-    "watch": "tsc -p . --watch",
     "compile": "tsc -p .",
+    "watch": "tsc -p . --watch",
     "lint": "tslint -p ./ -t verbose",
     "test": "mocha",
     "prepare": "npm run compile"
@@ -39,9 +39,10 @@
   "devDependencies": {
     "@types/fs-extra": "^5.0.4",
     "@types/mocha": "^5.2.5",
-    "@types/node": "^10.12.9",
+    "@types/node": "^10.12.18",
     "mocha": "^5.2.0",
-    "tslint": "^5.11.0",
-    "typescript": "^3.1.6"
+    "tslint": "^5.12.0",
+    "typescript": "^3.2.2",
+    "typescript-tslint-plugin": "^0.2.1"
   }
 }
