@@ -1,4 +1,5 @@
-import { fileSync, Options } from "tmp";
+import { fileSync } from "tmp";
+import { FileOptions } from ".";
 import { TempFileSystem } from "./TempFileSystem";
 
 /**
@@ -12,12 +13,18 @@ export class TempFile extends TempFileSystem
      * @param options
      * The options for the initialization.
      */
-    public constructor(options?: Options)
+    public constructor(options?: FileOptions)
     {
         super(options);
     }
 
-    protected Initialize(options: Options): void
+    /**
+     * Initializes the temporary file-system entry.
+     *
+     * @param options
+     * The options for the initialization.
+     */
+    protected Initialize(options: FileOptions): void
     {
         this.TempFileSystemEntry = fileSync(options);
     }
