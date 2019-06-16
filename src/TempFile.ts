@@ -19,10 +19,7 @@ export class TempFile extends TempFileSystem
     }
 
     /**
-     * Initializes the temporary file-system entry.
-     *
-     * @param options
-     * The options for the initialization.
+     * @inheritdoc
      */
     protected Initialize(options: FileOptions): void
     {
