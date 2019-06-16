@@ -20,6 +20,9 @@ export class TempDirectory extends TempFileSystem
         super(options);
     }
 
+    /**
+     * Disposes the temporary file-system entry and removes all references.
+     */
     public Dispose()
     {
         FileSystem.emptyDirSync(this.FullName);
@@ -37,6 +40,12 @@ export class TempDirectory extends TempFileSystem
         return Path.join(this.FullName, ...path);
     }
 
+    /**
+     * Initializes the temporary file-system entry.
+     *
+     * @param options
+     * The options for the initialization.
+     */
     protected Initialize(options: DirOptions)
     {
         this.TempFileSystemEntry = dirSync(options);

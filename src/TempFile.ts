@@ -18,6 +18,12 @@ export class TempFile extends TempFileSystem
         super(options);
     }
 
+    /**
+     * Initializes the temporary file-system entry.
+     *
+     * @param options
+     * The options for the initialization.
+     */
     protected Initialize(options: FileOptions): void
     {
         this.TempFileSystemEntry = fileSync(options);
