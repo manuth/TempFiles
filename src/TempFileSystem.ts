@@ -1,4 +1,4 @@
-import { Options, SynchrounousResult } from "tmp";
+import { TmpNameOptions, TmpNameResult } from ".";
 
 /**
  * Represents a temporary file-system entry.
@@ -8,7 +8,7 @@ export abstract class TempFileSystem
     /**
      * The temporary file-system entry.
      */
-    private tempFileSystemEntry: SynchrounousResult;
+    private tempFileSystemEntry: TmpNameResult;
 
     /**
      * Initializes a new instance of the `TempFileSystem` class.
@@ -16,7 +16,7 @@ export abstract class TempFileSystem
      * @param options
      * The options for the initialization.
      */
-    public constructor(options?: Options)
+    public constructor(options?: TmpNameOptions)
     {
         this.Initialize(options);
     }
@@ -68,5 +68,5 @@ export abstract class TempFileSystem
      * @param options
      * The options for the initialization.
      */
-    protected abstract Initialize(options: Options): void;
+    protected abstract Initialize(options: TmpNameOptions): void;
 }
