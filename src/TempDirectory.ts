@@ -21,7 +21,7 @@ export class TempDirectory extends TempFileSystem
     }
 
     /**
-     * Disposes the temporary file-system entry and removes all references.
+     * @inheritdoc
      */
     public Dispose()
     {
@@ -41,10 +41,7 @@ export class TempDirectory extends TempFileSystem
     }
 
     /**
-     * Initializes the temporary file-system entry.
-     *
-     * @param options
-     * The options for the initialization.
+     * @inheritdoc
      */
     protected Initialize(options: DirOptions)
     {
