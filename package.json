@@ -4,7 +4,7 @@
   "description": "Provides the functionality to handle temporary files and directories the object-oriented way.",
   "author": "Manuel Thalmann <m@nuth.ch>",
   "license": "MIT",
-  "keywsords": [
+  "keywords": [
     "filesystem",
     "temporary",
     "file",
