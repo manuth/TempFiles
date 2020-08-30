@@ -3,4 +3,5 @@ suite(
     () =>
     {
         require("./TempFile.test");
+        require("./TempDirectory.test.test");
     });
