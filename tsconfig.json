@@ -1,18 +1,15 @@
 {
-    "extends": "@manuth/tsconfig/recommended",
+    "extends": "./tsconfig.base.json",
     "compileOnSave": true,
     "compilerOptions": {
+        "composite": true,
         "rootDir": "./src",
-        "module": "commonjs",
-        "lib": [
-            "es7"
-        ],
-        "plugins": [
-            {
-                "name": "typescript-tslint-plugin"
-            }
-        ],
-        "target": "es6",
         "outDir": "./lib"
-    }
+    },
+    "include": [
+        "./src/**/*"
+    ],
+    "exclude": [
+        "./src/tests/**/*"
+    ]
 }
