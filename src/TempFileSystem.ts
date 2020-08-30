@@ -1,4 +1,5 @@
-import { TmpNameOptions, TmpNameResult } from ".";
+import { DirOptions, FileOptions } from "tmp";
+import { TempResult } from "./TempResult";
 
 /**
  * Represents a temporary file-system entry.
@@ -8,7 +9,7 @@ export abstract class TempFileSystem
     /**
      * The temporary file-system entry.
      */
-    private tempFileSystemEntry: TmpNameResult;
+    private tempFileSystemEntry: TempResult;
 
     /**
      * Initializes a new instance of the `TempFileSystem` class.
@@ -16,7 +17,7 @@ export abstract class TempFileSystem
      * @param options
      * The options for the initialization.
      */
-    public constructor(options?: TmpNameOptions)
+    public constructor(options?: FileOptions | DirOptions)
     {
         this.Initialize(options);
     }
@@ -32,7 +33,7 @@ export abstract class TempFileSystem
     /**
      * Gets or sets the temporary file-system entry.
      */
-    protected get TempFileSystemEntry(): TmpNameResult
+    protected get TempFileSystemEntry(): TempResult
     {
         return this.tempFileSystemEntry;
     }
@@ -40,7 +41,7 @@ export abstract class TempFileSystem
     /**
      * @inheritdoc
      */
-    protected set TempFileSystemEntry(value: TmpNameResult)
+    protected set TempFileSystemEntry(value: TempResult)
     {
         this.tempFileSystemEntry = value;
     }
@@ -71,5 +72,16 @@ export abstract class TempFileSystem
      * @param options
      * The options for the initialization.
      */
-    protected abstract Initialize(options: TmpNameOptions): void;
+    protected Initialize(options: FileOptions | DirOptions): void
+    {
+        if (!options.keep)
+        {
+            process.on(
+                "exit",
+                () =>
+                {
+                    this.Dispose();
+                });
+        }
+    }
 }
