@@ -24,7 +24,7 @@ export abstract class TempFileSystem
     /**
      * Gets the name of the temporary file-system entry.
      */
-    public get FullName()
+    public get FullName(): string
     {
         return this.tempFileSystemEntry.name;
     }
@@ -32,12 +32,15 @@ export abstract class TempFileSystem
     /**
      * Gets or sets the temporary file-system entry.
      */
-    protected get TempFileSystemEntry()
+    protected get TempFileSystemEntry(): TmpNameResult
     {
         return this.tempFileSystemEntry;
     }
 
-    protected set TempFileSystemEntry(value)
+    /**
+     * @inheritdoc
+     */
+    protected set TempFileSystemEntry(value: TmpNameResult)
     {
         this.tempFileSystemEntry = value;
     }
@@ -45,7 +48,7 @@ export abstract class TempFileSystem
     /**
      * Disposes the temporary file-system entry and removes all references.
      */
-    public Dispose()
+    public Dispose(): void
     {
         this.TempFileSystemEntry.removeCallback();
         this.TempFileSystemEntry = null;
@@ -57,7 +60,7 @@ export abstract class TempFileSystem
      * @returns
      * A string which represents the object.
      */
-    public toString()
+    public toString(): string
     {
         return this.FullName;
     }

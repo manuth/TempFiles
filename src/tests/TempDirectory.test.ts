@@ -1,6 +1,6 @@
 import Assert = require("assert");
-import FileSystem = require("fs-extra");
 import Path = require("path");
+import FileSystem = require("fs-extra");
 import { TempDirectory } from "..";
 
 suite(

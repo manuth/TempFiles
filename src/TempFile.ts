@@ -20,6 +20,9 @@ export class TempFile extends TempFileSystem
 
     /**
      * @inheritdoc
+     *
+     * @param options
+     * The options for the initialization.
      */
     protected Initialize(options: FileOptions): void
     {
