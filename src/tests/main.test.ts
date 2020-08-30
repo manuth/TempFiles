@@ -1,7 +1,10 @@
+import { TempDirectoryTests } from "./TempDirectory.test";
+import { TempFileTests } from "./TempFile.test";
+
 suite(
     "TempFileSystem",
     () =>
     {
-        require("./TempFile.test");
-        require("./TempDirectory.test.test");
+        TempFileTests();
+        TempDirectoryTests();
     });
