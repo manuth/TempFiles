@@ -1,13 +1,13 @@
 import Path = require("path");
 import FileSystem = require("fs-extra");
-import { dirSync } from "tmp";
+import { dirSync, DirResult } from "tmp";
 import { DirOptions } from ".";
 import { TempFileSystem } from "./TempFileSystem";
 
 /**
  * Represents a temporary directory.
  */
-export class TempDirectory extends TempFileSystem
+export class TempDirectory extends TempFileSystem<DirOptions>
 {
     /**
      * Initializes a new instance of the `TempDirectory` class.
@@ -46,11 +46,11 @@ export class TempDirectory extends TempFileSystem
     /**
      * @inheritdoc
      *
-     * @param options
-     * The options for the initialization.
+     * @returns
+     * The temporary directory.
      */
-    protected Initialize(options: DirOptions): void
+    protected CreateFileEntry(): DirResult
     {
-        this.TempFileSystemEntry = dirSync(options);
+        return dirSync(this.Options);
     }
 }

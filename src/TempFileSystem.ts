@@ -4,8 +4,13 @@ import { TempResult } from "./TempResult";
 /**
  * Represents a temporary file-system entry.
  */
-export abstract class TempFileSystem
+export abstract class TempFileSystem<T extends FileOptions | DirOptions = FileOptions | DirOptions>
 {
+    /**
+     * The options of the filesystem entry.
+     */
+    private options: T;
+
     /**
      * The temporary file-system entry.
      */
@@ -17,9 +22,10 @@ export abstract class TempFileSystem
      * @param options
      * The options for the initialization.
      */
-    public constructor(options?: FileOptions | DirOptions)
+    public constructor(options?: T)
     {
-        this.Initialize(options);
+        this.options = options;
+        this.Initialize();
     }
 
     /**
@@ -28,6 +34,14 @@ export abstract class TempFileSystem
     public get FullName(): string
     {
         return this.tempFileSystemEntry.name;
+    }
+
+    /**
+     * Gets the options of the file-systme entry.
+     */
+    public get Options(): T
+    {
+        return { ...this.options };
     }
 
     /**
@@ -68,13 +82,10 @@ export abstract class TempFileSystem
 
     /**
      * Initializes the temporary file-system entry.
-     *
-     * @param options
-     * The options for the initialization.
      */
-    protected Initialize(options: FileOptions | DirOptions): void
+    protected Initialize(): void
     {
-        if (!options.keep)
+        if (!this.options.keep)
         {
             process.on(
                 "exit",
@@ -83,5 +94,12 @@ export abstract class TempFileSystem
                     this.Dispose();
                 });
         }
+
+        this.TempFileSystemEntry = this.CreateFileEntry();
     }
+
+    /**
+     * Creates the filesystem entry.
+     */
+    protected abstract CreateFileEntry(): TempResult;
 }
