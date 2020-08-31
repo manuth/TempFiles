@@ -78,7 +78,7 @@ export abstract class TempFileSystem<T extends FileOptions | DirOptions = FileOp
     {
         for (let fileEntry of TempFileSystem.TempFileEntries)
         {
-            if (!fileEntry.Options.keep)
+            if (!fileEntry.Options?.keep)
             {
                 fileEntry.Dispose();
             }
@@ -110,7 +110,7 @@ export abstract class TempFileSystem<T extends FileOptions | DirOptions = FileOp
      */
     protected Initialize(): void
     {
-        if (!this.options.keep)
+        if (!this.Options?.keep)
         {
             process.on(
                 "exit",
