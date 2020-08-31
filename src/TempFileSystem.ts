@@ -17,6 +17,11 @@ export abstract class TempFileSystem<T extends FileOptions | DirOptions = FileOp
     protected static TempFileEntries: TempFileSystem[] = [];
 
     /**
+     * A value indicating whether the object has been disposed.
+     */
+    private disposed = false;
+
+    /**
      * The options of the filesystem entry.
      */
     private options: T;
@@ -121,16 +126,6 @@ export abstract class TempFileSystem<T extends FileOptions | DirOptions = FileOp
      */
     protected Initialize(): void
     {
-        if (!this.Options?.keep)
-        {
-            process.on(
-                "exit",
-                () =>
-                {
-                    this.Dispose();
-                });
-        }
-
         this.TempFileSystemEntry = this.CreateFileEntry();
     }
 
