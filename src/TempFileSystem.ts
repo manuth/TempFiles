@@ -80,7 +80,11 @@ export abstract class TempFileSystem<T extends FileOptions | DirOptions = FileOp
         {
             if (!fileEntry.Options?.keep)
             {
-                fileEntry.Dispose();
+                try
+                {
+                    fileEntry.Dispose();
+                }
+                catch { }
             }
         }
     }
@@ -90,7 +94,15 @@ export abstract class TempFileSystem<T extends FileOptions | DirOptions = FileOp
      */
     public Dispose(): void
     {
-        this.TempFileSystemEntry.removeCallback();
+        if (this.disposed)
+        {
+            throw new Error("This file-entry has been disposed already.");
+        }
+        else
+        {
+            this.TempFileSystemEntry.removeCallback();
+            this.disposed = true;
+        }
     }
 
     /**
