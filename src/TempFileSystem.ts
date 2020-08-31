@@ -91,7 +91,6 @@ export abstract class TempFileSystem<T extends FileOptions | DirOptions = FileOp
     public Dispose(): void
     {
         this.TempFileSystemEntry.removeCallback();
-        this.TempFileSystemEntry = null;
     }
 
     /**
