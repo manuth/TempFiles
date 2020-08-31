@@ -7,6 +7,16 @@ import { TempResult } from "./TempResult";
 export abstract class TempFileSystem<T extends FileOptions | DirOptions = FileOptions | DirOptions>
 {
     /**
+     * A value indicating whether temporary file-entries have been registered for deletion.
+     */
+    protected static Registered = false;
+
+    /**
+     * All temp-file entries which have been created so far.
+     */
+    protected static TempFileEntries: TempFileSystem[] = [];
+
+    /**
      * The options of the filesystem entry.
      */
     private options: T;
@@ -26,6 +36,7 @@ export abstract class TempFileSystem<T extends FileOptions | DirOptions = FileOp
     {
         this.options = options;
         this.Initialize();
+        this.Register();
     }
 
     /**
@@ -58,6 +69,20 @@ export abstract class TempFileSystem<T extends FileOptions | DirOptions = FileOp
     protected set TempFileSystemEntry(value: TempResult)
     {
         this.tempFileSystemEntry = value;
+    }
+
+    /**
+     * Removes all temporary file-entries which are pending for deletion.
+     */
+    public static Cleanup(): void
+    {
+        for (let fileEntry of TempFileSystem.TempFileEntries)
+        {
+            if (!fileEntry.Options.keep)
+            {
+                fileEntry.Dispose();
+            }
+        }
     }
 
     /**
@@ -96,6 +121,26 @@ export abstract class TempFileSystem<T extends FileOptions | DirOptions = FileOp
         }
 
         this.TempFileSystemEntry = this.CreateFileEntry();
+    }
+
+    /**
+     * Registers temporary file-entries for deletion.
+     */
+    protected Register(): void
+    {
+        if (!TempFileSystem.Registered)
+        {
+            process.on(
+                "exit",
+                () =>
+                {
+                    TempFileSystem.Cleanup();
+                });
+
+            TempFileSystem.Registered = true;
+        }
+
+        TempFileSystem.TempFileEntries.push(this);
     }
 
     /**
