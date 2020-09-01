@@ -1,3 +1,4 @@
+import { removeSync } from "fs-extra";
 import { DirOptions, FileOptions } from "tmp";
 import { TempResult } from "./TempResult";
 
@@ -106,6 +107,7 @@ export abstract class TempFileSystem<T extends FileOptions | DirOptions = FileOp
         else
         {
             this.TempFileSystemEntry.removeCallback();
+            removeSync(this.FullName);
             this.disposed = true;
         }
     }
