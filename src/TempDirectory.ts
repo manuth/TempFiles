@@ -1,5 +1,4 @@
 import Path = require("path");
-import FileSystem = require("fs-extra");
 import { dirSync, DirResult } from "tmp";
 import { DirOptions } from ".";
 import { TempFileSystem } from "./TempFileSystem";
@@ -25,7 +24,6 @@ export class TempDirectory extends TempFileSystem<DirOptions>
      */
     public Dispose(): void
     {
-        FileSystem.emptyDirSync(this.FullName);
         super.Dispose();
     }
 
