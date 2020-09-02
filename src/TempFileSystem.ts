@@ -1,5 +1,5 @@
 import { removeSync } from "fs-extra";
-import { DirOptions, FileOptions } from "tmp";
+import { DirOptions, FileOptions, tmpNameSync, TmpNameOptions } from "tmp";
 import { TempResult } from "./TempResult";
 
 /**
@@ -75,6 +75,20 @@ export abstract class TempFileSystem<T extends FileOptions | DirOptions = FileOp
     protected set TempFileSystemEntry(value: TempResult)
     {
         this.tempFileSystemEntry = value;
+    }
+
+    /**
+     * Creates a new available name for a temporary file or directory.
+     *
+     * @param options
+     * The options for creating the file-entry name.
+     *
+     * @returns
+     * A new available name for a temporary file or directory.
+     */
+    public static TempName(options?: TmpNameOptions): string
+    {
+        return tmpNameSync(options);
     }
 
     /**
