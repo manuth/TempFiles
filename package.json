@@ -1,5 +1,5 @@
 {
-  "name": "temp-filesystem",
+  "name": "@manuth/temp-files",
   "version": "1.1.3",
   "description": "Provides the functionality to handle temporary files and directories the object-oriented way.",
   "author": "Manuel Thalmann <m@nuth.ch>",
