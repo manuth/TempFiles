@@ -120,8 +120,8 @@ export abstract class TempFileSystem<T extends FileOptions | DirOptions = FileOp
         }
         else
         {
-            this.TempFileSystemEntry.removeCallback();
             removeSync(this.FullName);
+            this.TempFileSystemEntry.removeCallback();
             this.disposed = true;
         }
     }
