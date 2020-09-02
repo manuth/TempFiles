@@ -120,7 +120,11 @@ export abstract class TempFileSystem<T extends FileOptions | DirOptions = FileOp
         }
         else
         {
-            removeSync(this.FullName);
+            if (!this.Options?.keep)
+            {
+                removeSync(this.FullName);
+            }
+
             this.disposed = true;
         }
     }
