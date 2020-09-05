@@ -4,6 +4,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## TmpFiles [Unreleased]
+
+[Show differences](https://github.com/manuth/TempFiles/compare/v1.2.0...dev)
+
+## TmpFiles v1.2.0
+### Fixed
+  - Malformed `package.json` manifest
+
+### Added
+  - A configuration for continuous integration
+  - Support for deleting all files on process-exit
+  - A method for creating a path rather than a file or directory
+
+### Updated
+  - The development-environment
+    - Add linting-support using `eslint`
+
+[Show differences](https://github.com/manuth/TempFiles/compare/v1.1.3...v1.2.0)
+
 ## TempFiles v1.1.3
   - Update all dependencies
 
