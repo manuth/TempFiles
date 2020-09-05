@@ -3,7 +3,7 @@ import { TempFileTests } from "./TempFile.test";
 import { TempFileSystemTests } from "./TempFileSystem.test";
 
 suite(
-    "TempFileSystem",
+    "TempFiles",
     () =>
     {
         TempFileSystemTests();

@@ -16,13 +16,13 @@
     "lib": "lib",
     "test": "test"
   },
-  "homepage": "https://github.com/manuth/TempFileSystem#readme",
+  "homepage": "https://github.com/manuth/TempFiles#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/manuth/TempFileSystem.git"
+    "url": "git+https://github.com/manuth/TempFiles.git"
   },
   "bugs": {
-    "url": "https://github.com/manuth/TempFileSystem/issues"
+    "url": "https://github.com/manuth/TempFiles/issues"
   },
   "scripts": {
     "compile": "tsc -p .",

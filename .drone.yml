@@ -1,4 +1,4 @@
-name: TempFileSystem
+name: TempFiles
 kind: pipeline
 type: docker
 

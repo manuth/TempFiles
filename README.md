@@ -1,13 +1,13 @@
-# TempFileSystem
+# TempFiles
 Provides the functionality to handle temporary files and directories the object-oriented way.
 
-## Installing TempFileSystem
-`TempFileSystem` can be installed using the `npm`-cli:
+## Installing TempFiles
+`TempFiles` can be installed using the `npm`-cli:
 ```bash
 npm install --save temp-filesystem
 ```
 
-## Using TempFileSystem
+## Using TempFiles
 You can create temporary filesystem-entries by initializing new instances of the `TempFile`- or the `TempDirectory`-class.  
 Temporary filesystem-entries easily can be removed by invoking `TempFileSystem.Dispose()`.
 
