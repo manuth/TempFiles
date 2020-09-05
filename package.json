@@ -1,6 +1,6 @@
 {
   "name": "@manuth/temp-files",
-  "version": "1.1.3",
+  "version": "1.2.0",
   "description": "Provides the functionality to handle temporary files and directories the object-oriented way.",
   "author": "Manuel Thalmann <m@nuth.ch>",
   "license": "MIT",
@@ -23,6 +23,9 @@
   },
   "bugs": {
     "url": "https://github.com/manuth/TempFiles/issues"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "scripts": {
     "compile": "tsc -p .",

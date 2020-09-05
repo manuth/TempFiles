@@ -27,6 +27,7 @@ steps:
     commands:
       - echo "//registry.npmjs.org/:_authToken=$${NPM_TOKEN}" > ~/.npmrc
       - npm publish
+      - npm deprecate temp-filesystem "This package has been renamed to \`@manuth/temp-files\`"
     when:
       event:
         - tag
