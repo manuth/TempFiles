@@ -1,13 +1,12 @@
-import FileSystem = require("fs-extra");
 import Path = require("path");
-import { dirSync } from "tmp";
+import { dirSync, DirResult } from "tmp";
 import { DirOptions } from ".";
 import { TempFileSystem } from "./TempFileSystem";
 
 /**
  * Represents a temporary directory.
  */
-export class TempDirectory extends TempFileSystem
+export class TempDirectory extends TempFileSystem<DirOptions>
 {
     /**
      * Initializes a new instance of the `TempDirectory` class.
@@ -23,28 +22,33 @@ export class TempDirectory extends TempFileSystem
     /**
      * @inheritdoc
      */
-    public Dispose()
+    public Dispose(): void
     {
-        FileSystem.emptyDirSync(this.FullName);
         super.Dispose();
     }
 
     /**
-     * Joints the arguments together and returns the path contained by the temporary directory.
+     * Joins the arguments together and returns the path contained by the temporary directory.
      *
      * @param path
      * The path that is to be joined.
+     *
+     * @returns
+     * The joined path relative to the temporary directory.
      */
-    public MakePath(...path: string[])
+    public MakePath(...path: string[]): string
     {
         return Path.join(this.FullName, ...path);
     }
 
     /**
      * @inheritdoc
+     *
+     * @returns
+     * The temporary directory.
      */
-    protected Initialize(options: DirOptions)
+    protected CreateFileEntry(): DirResult
     {
-        this.TempFileSystemEntry = dirSync(options);
+        return dirSync(this.Options);
     }
 }

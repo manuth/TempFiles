@@ -1,10 +1,10 @@
 {
-  "name": "temp-filesystem",
-  "version": "1.1.3",
+  "name": "@manuth/temp-files",
+  "version": "1.2.0",
   "description": "Provides the functionality to handle temporary files and directories the object-oriented way.",
   "author": "Manuel Thalmann <m@nuth.ch>",
   "license": "MIT",
-  "keywsords": [
+  "keywords": [
     "filesystem",
     "temporary",
     "file",
@@ -16,35 +16,50 @@
     "lib": "lib",
     "test": "test"
   },
+  "homepage": "https://github.com/manuth/TempFiles#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/manuth/TempFileSystem.git"
+    "url": "git+https://github.com/manuth/TempFiles.git"
   },
   "bugs": {
-    "url": "https://github.com/manuth/TempFileSystem/issues"
+    "url": "https://github.com/manuth/TempFiles/issues"
   },
-  "homepage": "https://github.com/manuth/TempFileSystem#readme",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "compile": "tsc -p .",
-    "watch": "tsc -p . --watch",
-    "lint": "tslint -p ./ -t verbose",
+    "build": "tsc -b tsconfig.build.json",
+    "rebuild": "npm run clean && npm run build",
+    "watch": "npm run build -- --watch",
+    "clean": "npm run build -- --clean && rimraf ./lib",
+    "lint-base": "eslint --max-warnings 0 --ignore-pattern \"!.eslintrc.js\"",
+    "lint": "npm run lint-base -- --ext .js,.jsx,.ts,.tsx ./src .eslintrc.js",
+    "lint-compact": "npm run lint -- -f compact || exit 0",
     "test": "mocha",
-    "prepare": "npm run compile"
+    "prepare": "npm run rebuild"
   },
   "dependencies": {
-    "@types/tmp": "0.1.0",
-    "fs-extra": "^8.1.0",
-    "tmp": "0.1.0"
+    "@types/tmp": "0.2.0",
+    "fs-extra": "^9.0.1",
+    "tmp": "0.2.1"
   },
   "devDependencies": {
+    "@manuth/eslint-plugin-typescript": "^2.1.2",
     "@manuth/tsconfig": "^1.2.2",
-    "@manuth/tslint-presets": "^1.0.3",
-    "@types/fs-extra": "^8.0.0",
-    "@types/mocha": "^5.2.7",
-    "@types/node": "^12.6.9",
-    "mocha": "^6.2.0",
-    "tslint": "^5.18.0",
-    "typescript": "^3.5.3",
-    "typescript-tslint-plugin": "^0.5.4"
+    "@types/fs-extra": "^9.0.1",
+    "@types/mocha": "^8.0.3",
+    "@types/node": "^14.6.2",
+    "@typescript-eslint/eslint-plugin": "^4.0.1",
+    "@typescript-eslint/eslint-plugin-tslint": "^4.0.1",
+    "@typescript-eslint/parser": "^4.0.1",
+    "eslint": "^7.8.1",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jsdoc": "^30.3.1",
+    "mocha": "^8.1.3",
+    "rimraf": "^3.0.2",
+    "tslint": "^6.1.3",
+    "typescript": "^4.0.2",
+    "typescript-eslint-plugin": "^1.2.1"
   }
 }

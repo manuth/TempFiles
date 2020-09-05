@@ -1,11 +1,11 @@
-import { fileSync } from "tmp";
+import { fileSync, FileResult } from "tmp";
 import { FileOptions } from ".";
 import { TempFileSystem } from "./TempFileSystem";
 
 /**
  * Represents a temporary file.
  */
-export class TempFile extends TempFileSystem
+export class TempFile extends TempFileSystem<FileOptions>
 {
     /**
      * Initializes a new instance of the `TempFile` class.
@@ -20,9 +20,12 @@ export class TempFile extends TempFileSystem
 
     /**
      * @inheritdoc
+     *
+     * @returns
+     * The temporary directory.
      */
-    protected Initialize(options: FileOptions): void
+    protected CreateFileEntry(): FileResult
     {
-        this.TempFileSystemEntry = fileSync(options);
+        return fileSync(this.Options);
     }
 }
