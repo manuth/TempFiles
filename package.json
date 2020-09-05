@@ -24,6 +24,9 @@
   "bugs": {
     "url": "https://github.com/manuth/TempFiles/issues"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "compile": "tsc -p .",
     "build": "tsc -b tsconfig.build.json",
