@@ -77,165 +77,165 @@ export function TempFileSystemTests(): void
                             await remove(files.dir);
                         });
                 });
-        });
 
-    suite(
-        "Disposed",
-        () =>
-        {
-            let tempFile: TempFile;
-
-            setup(
+            suite(
+                "Disposed",
                 () =>
                 {
-                    tempFile = new TempFile();
-                });
+                    let tempFile: TempFile;
 
-            teardown(
-                () =>
-                {
-                    try
-                    {
-                        tempFile.Dispose();
-                    }
-                    catch
-                    { }
-                });
-
-            test(
-                "Checking whether `Disposed` initially equals `false`…",
-                () =>
-                {
-                    Assert.strictEqual(tempFile.Disposed, false);
-                });
-
-            test(
-                "Checking whether `Disposed` equals `true` once it has been disposed…",
-                () =>
-                {
-                    tempFile.Dispose();
-                    Assert.strictEqual(tempFile.Disposed, true);
-                });
-        });
-
-    test(
-        "Dispose",
-        () =>
-        {
-            test(
-                "Checking whether disposing a temp file-system entry twice throws an exception…",
-                () =>
-                {
-                    let file = new TempFile();
-                    file.Dispose();
-                    Assert.throws(() => file.Dispose());
-                });
-        });
-
-    suite(
-        "TempBaseName",
-        () =>
-        {
-            test(
-                "Checking whether a pattern for creationg a base-name can be provided…",
-                () =>
-                {
-                    let pattern = /^\d{2,30}test\w*[0-5]{3}$/;
-
-                    Assert.ok(
-                        pattern.test(
-                            TempFileSystem.TempBaseName(
-                                {
-                                    FileNamePattern: pattern,
-                                    Prefix: "",
-                                    Suffix: ""
-                                })));
-                });
-
-            test(
-                "Checking whether a prefix and a suffix can be specified…",
-                () =>
-                {
-                    let generator = new RandExp(/\w{10}/);
-                    let prefix = generator.gen();
-                    let suffix = generator.gen();
-                    let pattern = /\d{3}/;
-
-                    let tempName = TempFileSystem.TempBaseName(
+                    setup(
+                        () =>
                         {
-                            FileNamePattern: pattern,
-                            Prefix: prefix,
-                            Suffix: suffix
+                            tempFile = new TempFile();
                         });
 
-                    Assert.ok(tempName.startsWith(prefix));
-                    Assert.ok(tempName.endsWith(suffix));
-                    Assert.ok(pattern.test(tempName));
+                    teardown(
+                        () =>
+                        {
+                            try
+                            {
+                                tempFile.Dispose();
+                            }
+                            catch
+                            { }
+                        });
+
+                    test(
+                        "Checking whether `Disposed` initially equals `false`…",
+                        () =>
+                        {
+                            Assert.strictEqual(tempFile.Disposed, false);
+                        });
+
+                    test(
+                        "Checking whether `Disposed` equals `true` once it has been disposed…",
+                        () =>
+                        {
+                            tempFile.Dispose();
+                            Assert.strictEqual(tempFile.Disposed, true);
+                        });
                 });
 
             test(
-                "Checking whether the temp base-name is not absolute…",
+                "Dispose",
                 () =>
                 {
-                    Assert.ok(!isAbsolute(TempFileSystem.TempBaseName()));
+                    test(
+                        "Checking whether disposing a temp file-system entry twice throws an exception…",
+                        () =>
+                        {
+                            let file = new TempFile();
+                            file.Dispose();
+                            Assert.throws(() => file.Dispose());
+                        });
                 });
-        });
 
-    suite(
-        "TempName",
-        () =>
-        {
-            test(
-                "Checking whether file-names generated using `TempName` are relative to the system's temp-dir by default…",
+            suite(
+                "TempBaseName",
                 () =>
                 {
-                    let relativePath = relative(tmpdir(), TempFileSystem.TempName());
-                    Assert.ok(!isAbsolute(relativePath));
-                    Assert.ok(!relativePath.startsWith(".."));
+                    test(
+                        "Checking whether a pattern for creationg a base-name can be provided…",
+                        () =>
+                        {
+                            let pattern = /^\d{2,30}test\w*[0-5]{3}$/;
+
+                            Assert.ok(
+                                pattern.test(
+                                    TempFileSystem.TempBaseName(
+                                        {
+                                            FileNamePattern: pattern,
+                                            Prefix: "",
+                                            Suffix: ""
+                                        })));
+                        });
+
+                    test(
+                        "Checking whether a prefix and a suffix can be specified…",
+                        () =>
+                        {
+                            let generator = new RandExp(/\w{10}/);
+                            let prefix = generator.gen();
+                            let suffix = generator.gen();
+                            let pattern = /\d{3}/;
+
+                            let tempName = TempFileSystem.TempBaseName(
+                                {
+                                    FileNamePattern: pattern,
+                                    Prefix: prefix,
+                                    Suffix: suffix
+                                });
+
+                            Assert.ok(tempName.startsWith(prefix));
+                            Assert.ok(tempName.endsWith(suffix));
+                            Assert.ok(pattern.test(tempName));
+                        });
+
+                    test(
+                        "Checking whether the temp base-name is not absolute…",
+                        () =>
+                        {
+                            Assert.ok(!isAbsolute(TempFileSystem.TempBaseName()));
+                        });
                 });
 
-            test(
-                "Checking whether an inexistent file-name is chosen automatically…",
-                async function()
-                {
-                    this.timeout(0);
-                    let pattern = /[1-2]/;
-
-                    let options: ITempNameOptions = {
-                        FileNamePattern: pattern,
-                        Prefix: "",
-                        Suffix: "",
-                        Retries: Infinity
-                    };
-
-                    let file = new TempFile(options);
-                    let tempName = TempFileSystem.TempName(options);
-                    Assert.ok(!await pathExists(tempName));
-                    file.Dispose();
-                });
-
-            test(
-                "Checking whether an error is thrown if no free file-name could be found…",
+            suite(
+                "TempName",
                 () =>
                 {
-                    let pattern = /test/;
+                    test(
+                        "Checking whether file-names generated using `TempName` are relative to the system's temp-dir by default…",
+                        () =>
+                        {
+                            let relativePath = relative(tmpdir(), TempFileSystem.TempName());
+                            Assert.ok(!isAbsolute(relativePath));
+                            Assert.ok(!relativePath.startsWith(".."));
+                        });
 
-                    let options: ITempNameOptions = {
-                        FileNamePattern: pattern,
-                        Prefix: "",
-                        Suffix: ""
-                    };
+                    test(
+                        "Checking whether an inexistent file-name is chosen automatically…",
+                        async function()
+                        {
+                            this.timeout(0);
+                            let pattern = /[1-2]/;
 
-                    let file = new TempFile(options);
-                    Assert.throws(() => TempFileSystem.TempName(options));
-                    file.Dispose();
-                });
+                            let options: ITempNameOptions = {
+                                FileNamePattern: pattern,
+                                Prefix: "",
+                                Suffix: "",
+                                Retries: Infinity
+                            };
 
-            test(
-                "Checking whether paths generated using `TempName` are absolute…",
-                () =>
-                {
-                    Assert.ok(isAbsolute(TempFileSystem.TempName()));
+                            let file = new TempFile(options);
+                            let tempName = TempFileSystem.TempName(options);
+                            Assert.ok(!await pathExists(tempName));
+                            file.Dispose();
+                        });
+
+                    test(
+                        "Checking whether an error is thrown if no free file-name could be found…",
+                        () =>
+                        {
+                            let pattern = /test/;
+
+                            let options: ITempNameOptions = {
+                                FileNamePattern: pattern,
+                                Prefix: "",
+                                Suffix: ""
+                            };
+
+                            let file = new TempFile(options);
+                            Assert.throws(() => TempFileSystem.TempName(options));
+                            file.Dispose();
+                        });
+
+                    test(
+                        "Checking whether paths generated using `TempName` are absolute…",
+                        () =>
+                        {
+                            Assert.ok(isAbsolute(TempFileSystem.TempName()));
+                        });
                 });
         });
 }
