@@ -1,5 +1,5 @@
 import Assert = require("assert");
-import FileSystem = require("fs-extra");
+import { createFile, pathExists, remove, stat, writeFile } from "fs-extra";
 import { TempFile } from "..";
 
 /**
@@ -12,7 +12,6 @@ export function TempFileTests(): void
         () =>
         {
             let tempFile: TempFile;
-            let tempFileName: string;
             let text: string;
 
             suiteSetup(
@@ -21,28 +20,67 @@ export function TempFileTests(): void
                     text = "Hello World";
                 });
 
-            test(
-                "Checking whether a temporary file can be created…",
+            setup(
                 () =>
                 {
                     tempFile = new TempFile();
-                    tempFileName = tempFile.FullName;
+                });
+
+            teardown(
+                () =>
+                {
+                    try
+                    {
+                        tempFile.Dispose();
+                    }
+                    catch { }
                 });
 
             test(
-                "Checking whether the temporary file exists…",
-                async () => Assert.strictEqual(await FileSystem.pathExists(tempFileName), true));
+                "Checking whether files are created correctly…",
+                async () => Assert.ok(await pathExists(tempFile.FullName)));
 
             test(
                 "Checking whether the temporary file can be written…",
-                async () => FileSystem.writeFile(tempFileName, text));
+                async () => writeFile(tempFile.FullName, text));
 
             test(
                 "Checking whether the `TempFile`-object can be disposed…",
                 () => Assert.doesNotThrow(() => tempFile.Dispose()));
 
             test(
-                "Checking whether the temporary file has been deleted…",
-                async () => Assert.strictEqual(await FileSystem.pathExists(tempFileName), false));
+                "Checking whether the temporary file is deleted by invoking `Dispose`…",
+                async () =>
+                {
+                    tempFile.Dispose();
+                    Assert.ok(!await pathExists(tempFile.FullName));
+                });
+
+            test(
+                "Checking whether the file-name is available right after disposing it…",
+                async () =>
+                {
+                    tempFile.Dispose();
+                    await Assert.doesNotReject(() => createFile(tempFile.FullName));
+                    return remove(tempFile.FullName);
+                });
+
+            if (process.platform === "linux")
+            {
+                test(
+                    "Checking whether the `mode` is applied correctly…",
+                    async () =>
+                    {
+                        let mode = 0o007;
+
+                        let file = new TempFile(
+                            {
+                                Mode: mode
+                            });
+
+                        Assert.strictEqual((await stat(file.FullName)).mode & 0o777, mode);
+                        file.Dispose();
+                    });
+            }
         });
 }
