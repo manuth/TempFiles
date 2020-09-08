@@ -109,7 +109,14 @@ export abstract class TempFileSystem<T extends ITempFileSystemOptions = ITempFil
             fileName = generateFileName();
         }
 
-        return fileName;
+        if (!pathExistsSync(fileName))
+        {
+            return fileName;
+        }
+        else
+        {
+            throw new RangeError("A file-name, which does not exist already, could not be found.");
+        }
     }
 
     /**
