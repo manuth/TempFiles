@@ -1,5 +1,5 @@
 import { tmpdir } from "os";
-import { join } from "path";
+import { join, resolve } from "path";
 import { chmodSync, pathExistsSync, removeSync } from "fs-extra";
 import { randexp } from "randexp";
 import { ITempBaseNameOptions } from "./ITempBaseNameOptions";
@@ -103,7 +103,7 @@ export abstract class TempFileSystem<T extends ITempFileSystemOptions = ITempFil
          */
         let generateFileName = (): string =>
         {
-            return join(options.Directory, this.TempBaseName(options));
+            return resolve(join(options.Directory, this.TempBaseName(options)));
         };
 
         let fileName = generateFileName();

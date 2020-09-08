@@ -172,6 +172,13 @@ export function TempFileSystemTests(): void
                     Assert.ok(tempName.endsWith(suffix));
                     Assert.ok(pattern.test(tempName));
                 });
+
+            test(
+                "Checking whether the temp base-name is not absolute…",
+                () =>
+                {
+                    Assert.ok(!isAbsolute(TempFileSystem.TempBaseName()));
+                });
         });
 
     suite(
@@ -222,6 +229,13 @@ export function TempFileSystemTests(): void
                     let file = new TempFile(options);
                     Assert.throws(() => TempFileSystem.TempName(options));
                     file.Dispose();
+                });
+
+            test(
+                "Checking whether paths generated using `TempName` are absolute…",
+                () =>
+                {
+                    Assert.ok(isAbsolute(TempFileSystem.TempName()));
                 });
         });
 }
