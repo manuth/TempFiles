@@ -91,11 +91,22 @@ export abstract class TempFileSystem<T extends ITempFileSystemOptions = ITempFil
             ...options
         };
 
-        let fileName = this.TempBaseName(options);
+        /**
+         * Generates a new filename.
+         *
+         * @returns
+         * The newly generated filename.
+         */
+        let generateFileName = (): string =>
+        {
+            return join(options.Directory, this.TempBaseName(options));
+        };
+
+        let fileName = generateFileName();
 
         for (let i = 0; i < options.Retries && pathExistsSync(fileName); i++)
         {
-            fileName = join(options.Directory, this.TempBaseName(options));
+            fileName = generateFileName();
         }
 
         return fileName;
