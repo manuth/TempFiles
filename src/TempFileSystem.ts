@@ -1,5 +1,10 @@
-import { removeSync } from "fs-extra";
-import { DirOptions, FileOptions, tmpNameSync, TmpNameOptions } from "tmp";
+import { tmpdir } from "os";
+import { join } from "path";
+import { pathExistsSync, removeSync } from "fs-extra";
+import { randexp } from "randexp";
+import { DirOptions, FileOptions } from "tmp";
+import { ITempBaseNameOptions } from "./ITempBaseNameOptions";
+import { ITempNameOptions } from "./ITempNameOptions";
 import { TempResult } from "./TempResult";
 
 /**
@@ -94,9 +99,43 @@ export abstract class TempFileSystem<T extends FileOptions | DirOptions = FileOp
      * @returns
      * A new available name for a temporary file or directory.
      */
-    public static TempName(options?: TmpNameOptions): string
+    public static TempName(options?: ITempNameOptions): string
     {
-        return tmpNameSync(options);
+        options = {
+            Directory: tmpdir(),
+            Retries: 5,
+            ...options
+        };
+
+        let fileName = this.TempBaseName(options);
+
+        for (let i = 0; i < options.Retries && pathExistsSync(fileName); i++)
+        {
+            fileName = join(options.Directory, this.TempBaseName(options));
+        }
+
+        return fileName;
+    }
+
+    /**
+     * Creates a new base-name for a temporary file-entry.
+     *
+     * @param options
+     * The options for creating the file-entry name.
+     *
+     * @returns
+     * A new availa
+     */
+    public static TempBaseName(options?: ITempBaseNameOptions): string
+    {
+        options = {
+            Prefix: `tmp-${process.pid}-`,
+            Suffix: "",
+            FileNamePattern: /^[0-9A-Za-z]{6}$/,
+            ...options
+        };
+
+        return `${options.Prefix}${randexp(options.FileNamePattern)}${options.Suffix}`;
     }
 
     /**
