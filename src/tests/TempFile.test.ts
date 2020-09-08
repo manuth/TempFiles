@@ -57,7 +57,7 @@ export function TempFileTests(): void
                 });
 
             test(
-                "Checking whether the file-name is available right after disposing it…",
+                "Checking whether the file-system entry name is available right after the disposal…",
                 async () =>
                 {
                     tempFile.Dispose();
