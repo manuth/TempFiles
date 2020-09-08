@@ -45,7 +45,7 @@
     "tmp": "0.2.1"
   },
   "devDependencies": {
-    "@manuth/eslint-plugin-typescript": "^2.1.2",
+    "@manuth/eslint-plugin-typescript": "^2.2.0",
     "@manuth/tsconfig": "^1.2.2",
     "@types/fs-extra": "^9.0.1",
     "@types/mocha": "^8.0.3",
