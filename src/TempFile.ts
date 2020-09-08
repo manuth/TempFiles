@@ -1,11 +1,11 @@
-import { fileSync, FileResult } from "tmp";
-import { FileOptions } from ".";
+import { ensureFileSync } from "fs-extra";
+import { ITempFileSystemOptions } from "./ITempFileSystemOptions";
 import { TempFileSystem } from "./TempFileSystem";
 
 /**
  * Represents a temporary file.
  */
-export class TempFile extends TempFileSystem<FileOptions>
+export class TempFile extends TempFileSystem
 {
     /**
      * Initializes a new instance of the `TempFile` class.
@@ -13,19 +13,16 @@ export class TempFile extends TempFileSystem<FileOptions>
      * @param options
      * The options for the initialization.
      */
-    public constructor(options?: FileOptions)
+    public constructor(options?: ITempFileSystemOptions)
     {
         super(options);
     }
 
     /**
      * @inheritdoc
-     *
-     * @returns
-     * The temporary directory.
      */
-    protected CreateFileEntry(): FileResult
+    protected Initialize(): void
     {
-        return fileSync(this.Options);
+        ensureFileSync(this.FullName);
     }
 }

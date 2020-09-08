@@ -40,10 +40,8 @@
     "prepare": "npm run rebuild"
   },
   "dependencies": {
-    "@types/tmp": "0.2.0",
     "fs-extra": "^9.0.1",
-    "randexp": "^0.5.3",
-    "tmp": "0.2.1"
+    "randexp": "^0.5.3"
   },
   "devDependencies": {
     "@manuth/eslint-plugin-typescript": "^2.2.0",

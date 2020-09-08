@@ -1,12 +1,12 @@
 import Path = require("path");
-import { dirSync, DirResult } from "tmp";
-import { DirOptions } from ".";
+import { emptyDirSync } from "fs-extra";
+import { ITempFileSystemOptions } from "./ITempFileSystemOptions";
 import { TempFileSystem } from "./TempFileSystem";
 
 /**
  * Represents a temporary directory.
  */
-export class TempDirectory extends TempFileSystem<DirOptions>
+export class TempDirectory extends TempFileSystem
 {
     /**
      * Initializes a new instance of the `TempDirectory` class.
@@ -14,7 +14,7 @@ export class TempDirectory extends TempFileSystem<DirOptions>
      * @param options
      * The options for the initialization.
      */
-    public constructor(options?: DirOptions)
+    public constructor(options?: ITempFileSystemOptions)
     {
         super(options);
     }
@@ -43,12 +43,9 @@ export class TempDirectory extends TempFileSystem<DirOptions>
 
     /**
      * @inheritdoc
-     *
-     * @returns
-     * The temporary directory.
      */
-    protected CreateFileEntry(): DirResult
+    protected Initialize(): void
     {
-        return dirSync(this.Options);
+        emptyDirSync(this.FullName);
     }
 }
