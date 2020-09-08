@@ -62,6 +62,14 @@ export abstract class TempFileSystem<T extends FileOptions | DirOptions = FileOp
     }
 
     /**
+     * Gets a value indicating whether the file-entry has been disposed.
+     */
+    public get Disposed(): boolean
+    {
+        return this.disposed;
+    }
+
+    /**
      * Gets or sets the temporary file-system entry.
      */
     protected get TempFileSystemEntry(): TempResult
@@ -114,7 +122,7 @@ export abstract class TempFileSystem<T extends FileOptions | DirOptions = FileOp
      */
     public Dispose(): void
     {
-        if (this.disposed)
+        if (this.Disposed)
         {
             throw new Error("This file-entry has been disposed already.");
         }
