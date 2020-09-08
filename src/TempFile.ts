@@ -21,7 +21,7 @@ export class TempFile extends TempFileSystem
     /**
      * @inheritdoc
      */
-    protected Initialize(): void
+    protected CreateFileSystemEntry(): void
     {
         ensureFileSync(this.FullName);
     }

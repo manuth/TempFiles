@@ -9,4 +9,9 @@ export interface ITempFileSystemOptions extends ITempNameOptions
      * A value indicating whether the file-entry should be kept after exiting the process.
      */
     Keep?: boolean;
+
+    /**
+     * The mode to create the file-system entry with.
+     */
+    Mode?: number;
 }

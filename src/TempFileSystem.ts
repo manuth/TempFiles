@@ -1,6 +1,6 @@
 import { tmpdir } from "os";
 import { join } from "path";
-import { pathExistsSync, removeSync } from "fs-extra";
+import { chmodSync, pathExistsSync, removeSync } from "fs-extra";
 import { randexp } from "randexp";
 import { ITempBaseNameOptions } from "./ITempBaseNameOptions";
 import { ITempFileSystemOptions } from "./ITempFileSystemOptions";
@@ -174,7 +174,16 @@ export abstract class TempFileSystem<T extends ITempFileSystemOptions = ITempFil
     /**
      * Initializes the temporary file-system entry.
      */
-    protected abstract Initialize(): void;
+    protected Initialize(): void
+    {
+        this.CreateFileSystemEntry();
+        chmodSync(this.FullName, this.Options.Mode);
+    }
+
+    /**
+     * Creates the file-system entry.
+     */
+    protected abstract CreateFileSystemEntry(): void;
 
     /**
      * Registers temporary file-entries for deletion.

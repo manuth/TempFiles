@@ -44,7 +44,7 @@ export class TempDirectory extends TempFileSystem
     /**
      * @inheritdoc
      */
-    protected Initialize(): void
+    protected CreateFileSystemEntry(): void
     {
         emptyDirSync(this.FullName);
     }
