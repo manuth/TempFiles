@@ -1,11 +1,15 @@
-import { removeSync } from "fs-extra";
-import { DirOptions, FileOptions, tmpNameSync, TmpNameOptions } from "tmp";
-import { TempResult } from "./TempResult";
+import { tmpdir } from "os";
+import { join, resolve } from "path";
+import { chmodSync, pathExistsSync, removeSync } from "fs-extra";
+import { randexp } from "randexp";
+import { ITempBaseNameOptions } from "./ITempBaseNameOptions";
+import { ITempFileSystemOptions } from "./ITempFileSystemOptions";
+import { ITempNameOptions } from "./ITempNameOptions";
 
 /**
  * Represents a temporary file-system entry.
  */
-export abstract class TempFileSystem<T extends FileOptions | DirOptions = FileOptions | DirOptions>
+export abstract class TempFileSystem<T extends ITempFileSystemOptions = ITempFileSystemOptions>
 {
     /**
      * A value indicating whether temporary file-entries have been registered for deletion.
@@ -28,9 +32,9 @@ export abstract class TempFileSystem<T extends FileOptions | DirOptions = FileOp
     private options: T;
 
     /**
-     * The temporary file-system entry.
+     * The full name of the file-entry.
      */
-    private tempFileSystemEntry: TempResult;
+    private fullName: string;
 
     /**
      * Initializes a new instance of the `TempFileSystem` class.
@@ -50,7 +54,12 @@ export abstract class TempFileSystem<T extends FileOptions | DirOptions = FileOp
      */
     public get FullName(): string
     {
-        return this.tempFileSystemEntry.name;
+        if (!this.fullName)
+        {
+            this.fullName = TempFileSystem.TempName(this.Options);
+        }
+
+        return this.fullName;
     }
 
     /**
@@ -62,19 +71,11 @@ export abstract class TempFileSystem<T extends FileOptions | DirOptions = FileOp
     }
 
     /**
-     * Gets or sets the temporary file-system entry.
+     * Gets a value indicating whether the file-entry has been disposed.
      */
-    protected get TempFileSystemEntry(): TempResult
+    public get Disposed(): boolean
     {
-        return this.tempFileSystemEntry;
-    }
-
-    /**
-     * @inheritdoc
-     */
-    protected set TempFileSystemEntry(value: TempResult)
-    {
-        this.tempFileSystemEntry = value;
+        return this.disposed;
     }
 
     /**
@@ -86,9 +87,61 @@ export abstract class TempFileSystem<T extends FileOptions | DirOptions = FileOp
      * @returns
      * A new available name for a temporary file or directory.
      */
-    public static TempName(options?: TmpNameOptions): string
+    public static TempName(options?: ITempNameOptions): string
     {
-        return tmpNameSync(options);
+        options = {
+            Directory: tmpdir(),
+            Retries: 5,
+            ...options
+        };
+
+        /**
+         * Generates a new filename.
+         *
+         * @returns
+         * The newly generated filename.
+         */
+        let generateFileName = (): string =>
+        {
+            return resolve(join(options.Directory, this.TempBaseName(options)));
+        };
+
+        let fileName = generateFileName();
+
+        for (let i = 0; i < options.Retries && pathExistsSync(fileName); i++)
+        {
+            fileName = generateFileName();
+        }
+
+        if (!pathExistsSync(fileName))
+        {
+            return fileName;
+        }
+        else
+        {
+            throw new RangeError("A file-name, which does not exist already, could not be found.");
+        }
+    }
+
+    /**
+     * Creates a new base-name for a temporary file-entry.
+     *
+     * @param options
+     * The options for creating the file-entry name.
+     *
+     * @returns
+     * A new availa
+     */
+    public static TempBaseName(options?: ITempBaseNameOptions): string
+    {
+        options = {
+            Prefix: `tmp-${process.pid}-`,
+            Suffix: "",
+            FileNamePattern: /^[0-9A-Za-z]{6}$/,
+            ...options
+        };
+
+        return `${options.Prefix}${randexp(options.FileNamePattern)}${options.Suffix}`;
     }
 
     /**
@@ -98,7 +151,7 @@ export abstract class TempFileSystem<T extends FileOptions | DirOptions = FileOp
     {
         for (let fileEntry of TempFileSystem.TempFileEntries)
         {
-            if (!fileEntry.Options?.keep)
+            if (!fileEntry.Options?.Keep)
             {
                 try
                 {
@@ -114,13 +167,13 @@ export abstract class TempFileSystem<T extends FileOptions | DirOptions = FileOp
      */
     public Dispose(): void
     {
-        if (this.disposed)
+        if (this.Disposed)
         {
             throw new Error("This file-entry has been disposed already.");
         }
         else
         {
-            if (!this.Options?.keep)
+            if (!this.Options?.Keep)
             {
                 removeSync(this.FullName);
             }
@@ -145,8 +198,18 @@ export abstract class TempFileSystem<T extends FileOptions | DirOptions = FileOp
      */
     protected Initialize(): void
     {
-        this.TempFileSystemEntry = this.CreateFileEntry();
+        this.CreateFileSystemEntry();
+
+        if (this.Options?.Mode)
+        {
+            chmodSync(this.FullName, this.Options.Mode);
+        }
     }
+
+    /**
+     * Creates the file-system entry.
+     */
+    protected abstract CreateFileSystemEntry(): void;
 
     /**
      * Registers temporary file-entries for deletion.
@@ -167,9 +230,4 @@ export abstract class TempFileSystem<T extends FileOptions | DirOptions = FileOp
 
         TempFileSystem.TempFileEntries.push(this);
     }
-
-    /**
-     * Creates the filesystem entry.
-     */
-    protected abstract CreateFileEntry(): TempResult;
 }

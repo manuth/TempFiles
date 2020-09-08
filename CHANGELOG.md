@@ -6,7 +6,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## TmpFiles [Unreleased]
 
-[Show differences](https://github.com/manuth/TempFiles/compare/v1.2.0...dev)
+[Show differences](https://github.com/manuth/TempFiles/compare/v2.0.0...dev)
+
+## TmpFiles v2.0.0
+### Added
+  - A property `Disposed` which indicates whether the file-entry has been disposed
+  - New methods for creating temporary names
+  - The functionality to specify the creation-mode for files and directories
+  - Tests for the new features
+
+[Show differences](https://github.com/manuth/TempFiles/compare/v1.2.0...v2.0.0)
 
 ## TmpFiles v1.2.0
 ### Fixed
