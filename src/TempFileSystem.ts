@@ -45,7 +45,6 @@ export abstract class TempFileSystem<T extends ITempFileSystemOptions = ITempFil
     public constructor(options?: T)
     {
         this.options = options;
-        this.fullName = TempFileSystem.TempName();
         this.Initialize();
         this.Register();
     }
@@ -55,6 +54,11 @@ export abstract class TempFileSystem<T extends ITempFileSystemOptions = ITempFil
      */
     public get FullName(): string
     {
+        if (!this.fullName)
+        {
+            this.fullName = TempFileSystem.TempName(this.Options);
+        }
+
         return this.fullName;
     }
 
