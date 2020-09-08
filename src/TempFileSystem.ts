@@ -177,7 +177,11 @@ export abstract class TempFileSystem<T extends ITempFileSystemOptions = ITempFil
     protected Initialize(): void
     {
         this.CreateFileSystemEntry();
-        chmodSync(this.FullName, this.Options.Mode);
+
+        if (this.Options?.Mode)
+        {
+            chmodSync(this.FullName, this.Options.Mode);
+        }
     }
 
     /**
