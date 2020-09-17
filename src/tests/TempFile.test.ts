@@ -1,6 +1,6 @@
 import Assert = require("assert");
 import { createFile, pathExists, remove, stat, writeFile } from "fs-extra";
-import { TempFile } from "..";
+import { TempFile } from "../TempFile";
 
 /**
  * Registers tests for the `TempFile` class.

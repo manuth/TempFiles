@@ -1,7 +1,7 @@
 import Assert = require("assert");
 import Path = require("path");
 import { mkdir, pathExists, readFile, remove, stat, writeFile } from "fs-extra";
-import { TempDirectory } from "..";
+import { TempDirectory } from "../TempDirectory";
 
 /**
  * Registers tests for the `TempDirectory` class.
