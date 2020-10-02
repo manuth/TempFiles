@@ -1,4 +1,4 @@
-import Assert = require("assert");
+import { ok, strictEqual, throws } from "assert";
 import { ChildProcess, fork } from "child_process";
 import { tmpdir } from "os";
 import { isAbsolute, relative } from "path";
@@ -53,14 +53,14 @@ export function TempFileSystemTests(): void
                         "Checking whether temporary file-entries are deleted automatically on `process.exit`…",
                         async () =>
                         {
-                            Assert.ok(!await pathExists(files.file));
+                            ok(!await pathExists(files.file));
                         });
 
                     test(
                         "Checking whether directories with contents are deleted automatically on `process.exit` as well…",
                         async () =>
                         {
-                            Assert.ok(!await pathExists(files.dir));
+                            ok(!await pathExists(files.dir));
                         });
 
                     test(
@@ -71,8 +71,8 @@ export function TempFileSystemTests(): void
                             this.slow(3 * 1000);
 
                             await SpawnTestScript(true);
-                            Assert.ok(await pathExists(files.file));
-                            Assert.ok(await pathExists(files.dir));
+                            ok(await pathExists(files.file));
+                            ok(await pathExists(files.dir));
                             await remove(files.file);
                             await remove(files.dir);
                         });
@@ -105,7 +105,7 @@ export function TempFileSystemTests(): void
                         "Checking whether `Disposed` initially equals `false`…",
                         () =>
                         {
-                            Assert.strictEqual(tempFile.Disposed, false);
+                            strictEqual(tempFile.Disposed, false);
                         });
 
                     test(
@@ -113,7 +113,7 @@ export function TempFileSystemTests(): void
                         () =>
                         {
                             tempFile.Dispose();
-                            Assert.strictEqual(tempFile.Disposed, true);
+                            strictEqual(tempFile.Disposed, true);
                         });
                 });
 
@@ -127,7 +127,7 @@ export function TempFileSystemTests(): void
                         {
                             let file = new TempFile();
                             file.Dispose();
-                            Assert.throws(() => file.Dispose());
+                            throws(() => file.Dispose());
                         });
                 });
 
@@ -141,7 +141,7 @@ export function TempFileSystemTests(): void
                         {
                             let pattern = /^\d{2,30}test\w*[0-5]{3}$/;
 
-                            Assert.ok(
+                            ok(
                                 pattern.test(
                                     TempFileSystem.TempBaseName(
                                         {
@@ -167,16 +167,16 @@ export function TempFileSystemTests(): void
                                     Suffix: suffix
                                 });
 
-                            Assert.ok(tempName.startsWith(prefix));
-                            Assert.ok(tempName.endsWith(suffix));
-                            Assert.ok(pattern.test(tempName));
+                            ok(tempName.startsWith(prefix));
+                            ok(tempName.endsWith(suffix));
+                            ok(pattern.test(tempName));
                         });
 
                     test(
                         "Checking whether the temp base-name is not absolute…",
                         () =>
                         {
-                            Assert.ok(!isAbsolute(TempFileSystem.TempBaseName()));
+                            ok(!isAbsolute(TempFileSystem.TempBaseName()));
                         });
                 });
 
@@ -189,8 +189,8 @@ export function TempFileSystemTests(): void
                         () =>
                         {
                             let relativePath = relative(tmpdir(), TempFileSystem.TempName());
-                            Assert.ok(!isAbsolute(relativePath));
-                            Assert.ok(!relativePath.startsWith(".."));
+                            ok(!isAbsolute(relativePath));
+                            ok(!relativePath.startsWith(".."));
                         });
 
                     test(
@@ -209,7 +209,7 @@ export function TempFileSystemTests(): void
 
                             let file = new TempFile(options);
                             let tempName = TempFileSystem.TempName(options);
-                            Assert.ok(!await pathExists(tempName));
+                            ok(!await pathExists(tempName));
                             file.Dispose();
                         });
 
@@ -226,7 +226,7 @@ export function TempFileSystemTests(): void
                             };
 
                             let file = new TempFile(options);
-                            Assert.throws(() => TempFileSystem.TempName(options));
+                            throws(() => TempFileSystem.TempName(options));
                             file.Dispose();
                         });
 
@@ -234,7 +234,7 @@ export function TempFileSystemTests(): void
                         "Checking whether paths generated using `TempName` are absolute…",
                         () =>
                         {
-                            Assert.ok(isAbsolute(TempFileSystem.TempName()));
+                            ok(isAbsolute(TempFileSystem.TempName()));
                         });
                 });
         });
