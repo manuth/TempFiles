@@ -4,11 +4,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## TmpFiles [Unreleased]
+## TempFiles [Unreleased]
 
-[Show differences](https://github.com/manuth/TempFiles/compare/v2.0.0...dev)
+[Show differences](https://github.com/manuth/TempFiles/compare/v2.0.1...dev)
 
-## TmpFiles v2.0.0
+## TempFiles v2.0.1
+### Added
+  - Missing key components to the module-exports
+
+### Updated
+  - The eslint-rules to prevent the usage of deprecated API
+  - The development-environment
+
+[Show differences](https://github.com/manuth/TempFiles/compare/v2.0.0...v2.0.1)
+
+## TempFiles v2.0.0
 ### Added
   - A property `Disposed` which indicates whether the file-entry has been disposed
   - New methods for creating temporary names
@@ -17,7 +27,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 [Show differences](https://github.com/manuth/TempFiles/compare/v1.2.0...v2.0.0)
 
-## TmpFiles v1.2.0
+## TempFiles v1.2.0
 ### Fixed
   - Malformed `package.json` manifest
 

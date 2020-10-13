@@ -19,7 +19,7 @@ steps:
     image: node
     commands:
       - npm run test
-  - name: publish module to npm
+  - name: publish package to npm
     image: node
     environment:
       NPM_TOKEN:
@@ -27,13 +27,12 @@ steps:
     commands:
       - echo "//registry.npmjs.org/:_authToken=$${NPM_TOKEN}" > ~/.npmrc
       - npm publish
-      - npm deprecate temp-filesystem "This package has been renamed to \`@manuth/temp-files\`"
     when:
       event:
         - tag
       ref:
         - refs/tags/v[0-9].[0-9].[0-9]
-  - name: publish module to github
+  - name: publish package to github
     image: node
     environment:
       GITHUB_TOKEN:
@@ -51,7 +50,7 @@ steps:
     image: node
     commands:
       - npm pack
-      - npm install escape-string-regexp
+      - npm install escape-string-regexp --no-save
       - node -e "console.log(require('escape-string-regexp')('${DRONE_TAG}'))" > TagName.txt
     when:
       event:
@@ -69,7 +68,7 @@ steps:
     when:
       event:
         - tag
-  - name: publish
+  - name: publish release
     image: plugins/github-release
     commands: []
     settings:

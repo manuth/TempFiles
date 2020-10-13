@@ -1,4 +1,4 @@
-import Path = require("path");
+import { join } from "path";
 import { emptyDirSync } from "fs-extra";
 import { ITempFileSystemOptions } from "./ITempFileSystemOptions";
 import { TempFileSystem } from "./TempFileSystem";
@@ -38,7 +38,7 @@ export class TempDirectory extends TempFileSystem
      */
     public MakePath(...path: string[]): string
     {
-        return Path.join(this.FullName, ...path);
+        return join(this.FullName, ...path);
     }
 
     /**

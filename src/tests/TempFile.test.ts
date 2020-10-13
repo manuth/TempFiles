@@ -1,6 +1,6 @@
-import Assert = require("assert");
+import { doesNotReject, doesNotThrow, ok, strictEqual } from "assert";
 import { createFile, pathExists, remove, stat, writeFile } from "fs-extra";
-import { TempFile } from "..";
+import { TempFile } from "../TempFile";
 
 /**
  * Registers tests for the `TempFile` class.
@@ -38,7 +38,7 @@ export function TempFileTests(): void
 
             test(
                 "Checking whether files are created correctly…",
-                async () => Assert.ok(await pathExists(tempFile.FullName)));
+                async () => ok(await pathExists(tempFile.FullName)));
 
             test(
                 "Checking whether the temporary file can be written…",
@@ -46,14 +46,14 @@ export function TempFileTests(): void
 
             test(
                 "Checking whether the `TempFile`-object can be disposed…",
-                () => Assert.doesNotThrow(() => tempFile.Dispose()));
+                () => doesNotThrow(() => tempFile.Dispose()));
 
             test(
                 "Checking whether the temporary file is deleted by invoking `Dispose`…",
                 async () =>
                 {
                     tempFile.Dispose();
-                    Assert.ok(!await pathExists(tempFile.FullName));
+                    ok(!await pathExists(tempFile.FullName));
                 });
 
             test(
@@ -61,7 +61,7 @@ export function TempFileTests(): void
                 async () =>
                 {
                     tempFile.Dispose();
-                    await Assert.doesNotReject(() => createFile(tempFile.FullName));
+                    await doesNotReject(() => createFile(tempFile.FullName));
                     return remove(tempFile.FullName);
                 });
 
@@ -78,7 +78,7 @@ export function TempFileTests(): void
                                 Mode: mode
                             });
 
-                        Assert.strictEqual((await stat(file.FullName)).mode & 0o777, mode);
+                        strictEqual((await stat(file.FullName)).mode & 0o777, mode);
                         file.Dispose();
                     });
             }

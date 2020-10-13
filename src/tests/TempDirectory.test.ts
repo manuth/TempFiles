@@ -1,7 +1,7 @@
-import Assert = require("assert");
-import Path = require("path");
+import { doesNotReject, doesNotThrow, ok, strictEqual } from "assert";
+import { join, resolve } from "path";
 import { mkdir, pathExists, readFile, remove, stat, writeFile } from "fs-extra";
-import { TempDirectory } from "..";
+import { TempDirectory } from "../TempDirectory";
 
 /**
  * Registers tests for the `TempDirectory` class.
@@ -45,42 +45,42 @@ export function TempDirectoryTests(): void
                 {
                     test(
                         "Checking whether directories are created correctly…",
-                        async () => Assert.ok(await pathExists(tempDir.FullName)));
+                        async () => ok(await pathExists(tempDir.FullName)));
 
                     test(
                         "Checking whether files can be written inside the temporary directory…",
-                        async () => Assert.doesNotReject(async () => writeFile(tempDir.MakePath(tempFileName), text)));
+                        async () => doesNotReject(async () => writeFile(tempDir.MakePath(tempFileName), text)));
 
                     test(
                         "Checking whether files written inside the temporary directory exists…",
                         async () =>
                         {
                             await writeFile(tempDir.MakePath(tempFileName), text);
-                            Assert.strictEqual((await readFile(tempDir.MakePath(tempFileName))).toString(), text);
+                            strictEqual((await readFile(tempDir.MakePath(tempFileName))).toString(), text);
                         });
 
                     test(
                         "Checking whether temporary directories can be disposed…",
-                        () => Assert.doesNotThrow(() => tempDir.Dispose()));
+                        () => doesNotThrow(() => tempDir.Dispose()));
 
                     test(
                         "Checking whether temporary directories are deleted by invoking `Dispose`…",
                         async () =>
                         {
                             tempDir.Dispose();
-                            Assert.ok(!await pathExists(tempDir.FullName));
+                            ok(!await pathExists(tempDir.FullName));
                         });
 
                     test(
                         "Checking whether temporary directories can be deleted even if they contain files…",
                         async () =>
                         {
-                            Assert.ok(await pathExists(tempDir.FullName));
+                            ok(await pathExists(tempDir.FullName));
                             await writeFile(tempDir.MakePath(tempFileName), text);
-                            Assert.ok(await pathExists(tempDir.MakePath(tempFileName)));
+                            ok(await pathExists(tempDir.MakePath(tempFileName)));
                             tempDir.Dispose();
-                            Assert.ok(!await pathExists(tempDir.MakePath(tempFileName)));
-                            Assert.ok(!await pathExists(tempDir.FullName));
+                            ok(!await pathExists(tempDir.MakePath(tempFileName)));
+                            ok(!await pathExists(tempDir.FullName));
                         });
 
                     test(
@@ -88,7 +88,7 @@ export function TempDirectoryTests(): void
                         async () =>
                         {
                             tempDir.Dispose();
-                            await Assert.doesNotReject(() => mkdir(tempDir.FullName));
+                            await doesNotReject(() => mkdir(tempDir.FullName));
                             return remove(tempDir.FullName);
                         });
 
@@ -105,7 +105,7 @@ export function TempDirectoryTests(): void
                                         Mode: mode
                                     });
 
-                                Assert.strictEqual((await stat(dir.FullName)).mode & 0o777, mode);
+                                strictEqual((await stat(dir.FullName)).mode & 0o777, mode);
                                 dir.Dispose();
                             });
                     }
@@ -133,7 +133,7 @@ export function TempDirectoryTests(): void
 
                     test(
                         "Checking whether paths are built correctly…",
-                        () => Assert.strictEqual(Path.resolve(Path.join(tempDir.FullName, ...path)), Path.resolve(tempDir.MakePath(...path))));
+                        () => strictEqual(resolve(join(tempDir.FullName, ...path)), resolve(tempDir.MakePath(...path))));
                 });
         });
 }
