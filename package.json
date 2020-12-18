@@ -1,6 +1,6 @@
 {
   "name": "@manuth/temp-files",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Provides the functionality to handle temporary files and directories the object-oriented way.",
   "author": "Manuel Thalmann <m@nuth.ch>",
   "license": "MIT",
@@ -43,22 +43,22 @@
     "randexp": "^0.5.3"
   },
   "devDependencies": {
-    "@manuth/eslint-plugin-typescript": "^2.3.3",
-    "@manuth/tsconfig": "^1.2.3",
+    "@manuth/eslint-plugin-typescript": "^2.3.4",
+    "@manuth/tsconfig": "^1.2.4",
     "@manuth/typescript-eslint-plugin": "^1.3.1",
-    "@types/fs-extra": "^9.0.1",
-    "@types/mocha": "^8.0.3",
-    "@types/node": "^14.11.2",
-    "@typescript-eslint/eslint-plugin": "^4.3.0",
-    "@typescript-eslint/eslint-plugin-tslint": "^4.3.0",
-    "@typescript-eslint/parser": "^4.3.0",
-    "eslint": "^7.10.0",
-    "eslint-plugin-deprecation": "^1.1.0",
+    "@types/fs-extra": "^9.0.5",
+    "@types/mocha": "^8.2.0",
+    "@types/node": "^14.14.14",
+    "@typescript-eslint/eslint-plugin": "^4.10.0",
+    "@typescript-eslint/eslint-plugin-tslint": "^4.10.0",
+    "@typescript-eslint/parser": "^4.10.0",
+    "eslint": "^7.15.0",
+    "eslint-plugin-deprecation": "^1.2.0",
     "eslint-plugin-import": "^2.22.1",
-    "eslint-plugin-jsdoc": "^30.6.2",
-    "mocha": "^8.1.3",
+    "eslint-plugin-jsdoc": "^30.7.8",
+    "mocha": "^8.2.1",
     "rimraf": "^3.0.2",
     "tslint": "^6.1.3",
-    "typescript": "^4.0.3"
+    "typescript": "^4.1.3"
   }
 }
