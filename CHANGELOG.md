@@ -8,6 +8,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
   - Vulnerabilities in dependencies
 
+### Added
+  - A workflow for merging Dependabot-PRs
+  - A workflow for analyzing the code
+
 [Show differences](https://github.com/manuth/TempFiles/compare/v2.0.3...dev)
 
 ## TempFiles v2.0.3
