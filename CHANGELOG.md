@@ -6,7 +6,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## TempFiles [Unreleased]
 
-[Show differences](https://github.com/manuth/TempFiles/compare/v2.0.3...dev)
+[Show differences](https://github.com/manuth/TempFiles/compare/v2.0.4...dev)
+
+## TempFiles v2.0.4
+### Fixed
+  - Vulnerabilities in dependencies
+
+### Added
+  - A workflow for merging Dependabot-PRs
+  - A workflow for analyzing the code
+
+### Updated
+  - All dependencies
+
+[Show differences](https://github.com/manuth/TempFiles/compare/v2.0.3...v2.0.4)
 
 ## TempFiles v2.0.3
 ### Updated
@@ -16,7 +29,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## TempFiles v2.0.2
 ### Fixed
-  - Vulnerabilities
+  - Vulnerabilities in dependencies
   - Broken dependabot-settings
 
 ### Updated
