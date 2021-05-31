@@ -5,6 +5,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## TempFiles [Unreleased]
+### Fixed
+  - Broken auto-merge workflow
+  - Drone-pipelines for multi-digit version-numbers
+
+### Updated
+  - Drone-pipeline to use small-sized images
+  - All dependencies
 
 [Show differences](https://github.com/manuth/TempFiles/compare/v2.0.4...dev)
 
