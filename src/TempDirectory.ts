@@ -22,7 +22,7 @@ export class TempDirectory extends TempFileSystem
     /**
      * @inheritdoc
      */
-    public Dispose(): void
+    public override Dispose(): void
     {
         super.Dispose();
     }
