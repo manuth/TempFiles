@@ -5,6 +5,5 @@
     "mochaExplorer.require": "source-map-support/register",
     "typescript.format.insertSpaceAfterFunctionKeywordForAnonymousFunctions": false,
     "typescript.format.placeOpenBraceOnNewLineForControlBlocks": true,
-    "typescript.format.placeOpenBraceOnNewLineForFunctions": true,
-    "typescript.tsdk": "./node_modules/typescript/lib"
+    "typescript.format.placeOpenBraceOnNewLineForFunctions": true
 }
