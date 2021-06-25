@@ -4,6 +4,7 @@ import { tmpdir } from "os";
 import { isAbsolute, relative } from "path";
 import { pathExists, remove } from "fs-extra";
 import RandExp = require("randexp");
+import { ITempFileSystemOptions } from "../ITempFileSystemOptions";
 import { ITempNameOptions } from "../ITempNameOptions";
 import { TempFile } from "../TempFile";
 import { TempFileSystem } from "../TempFileSystem";
@@ -76,6 +77,35 @@ export function TempFileSystemTests(): void
                             ok(await pathExists(files.dir));
                             await remove(files.file);
                             await remove(files.dir);
+                        });
+                });
+
+            suite(
+                nameof(TempFileSystem.Cleanup),
+                () =>
+                {
+                    test(
+                        `Checking whether \`${nameof(TempFileSystem)}\`-objects can be cleaned up manually…`,
+                        async () =>
+                        {
+                            let file = new TempFile();
+                            TempFileSystem.Cleanup();
+                            ok(file.Disposed);
+                            ok(!await pathExists(file.FullName));
+                        });
+
+                    test(
+                        `Checking whether \`${nameof(TempFileSystem)}\`-objects with \`${nameof<ITempFileSystemOptions>((opt) => opt.Keep)}\` set to \`${true}\` aren't deleted by calling \`${nameof(TempFileSystem.Cleanup)}\`…`,
+                        async () =>
+                        {
+                            let file = new TempFile(
+                                {
+                                    Keep: true
+                                });
+
+                            TempFileSystem.Cleanup();
+                            ok(!file.Disposed);
+                            ok(await pathExists(file.FullName));
                         });
                 });
 
