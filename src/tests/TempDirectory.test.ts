@@ -4,7 +4,7 @@ import { mkdir, pathExists, readFile, remove, stat, writeFile } from "fs-extra";
 import { TempDirectory } from "../TempDirectory";
 
 /**
- * Registers tests for the `TempDirectory` class.
+ * Registers tests for the {@link TempDirectory `TempDirectory`} class.
  */
 export function TempDirectoryTests(): void
 {

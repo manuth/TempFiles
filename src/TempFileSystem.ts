@@ -8,6 +8,9 @@ import { ITempNameOptions } from "./ITempNameOptions";
 
 /**
  * Represents a temporary file-system entry.
+ *
+ * @template T
+ * The type of the options for initializing the file-system entry.
  */
 export abstract class TempFileSystem<T extends ITempFileSystemOptions = ITempFileSystemOptions>
 {
@@ -37,7 +40,7 @@ export abstract class TempFileSystem<T extends ITempFileSystemOptions = ITempFil
     private fullName: string;
 
     /**
-     * Initializes a new instance of the `TempFileSystem` class.
+     * Initializes a new instance of the {@link TempFileSystem `TempFileSystem`} class.
      *
      * @param options
      * The options for the initialization.

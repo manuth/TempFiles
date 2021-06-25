@@ -9,7 +9,7 @@ import { TempFileSystem } from "./TempFileSystem";
 export class TempDirectory extends TempFileSystem
 {
     /**
-     * Initializes a new instance of the `TempDirectory` class.
+     * Initializes a new instance of the {@link TempDirectory `TempDirectory`} class.
      *
      * @param options
      * The options for the initialization.

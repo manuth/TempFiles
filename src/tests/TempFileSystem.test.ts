@@ -10,7 +10,7 @@ import { TempFileSystem } from "../TempFileSystem";
 import { ITestFiles } from "./ITestFiles";
 
 /**
- * Registers tests for the `TempFileSystem` class.
+ * Registers tests for the {@link TempFileSystem `TempFileSystem<T>`} class.
  */
 export function TempFileSystemTests(): void
 {

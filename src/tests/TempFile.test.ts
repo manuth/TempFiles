@@ -3,7 +3,7 @@ import { createFile, pathExists, remove, stat, writeFile } from "fs-extra";
 import { TempFile } from "../TempFile";
 
 /**
- * Registers tests for the `TempFile` class.
+ * Registers tests for the {@link TempFile `TempFile`} class.
  */
 export function TempFileTests(): void
 {
