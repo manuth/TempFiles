@@ -5,6 +5,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## TempFiles [Unreleased]
+
+[Show differences](https://github.com/manuth/TempFiles/compare/v2.0.6...dev)
+
+## TempFiles v2.0.6
 ### Added
   - Support for the Test Explorer UI
   - Support for `ts-nameof`
@@ -16,7 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Updated
   - All dependencies
 
-[Show differences](https://github.com/manuth/TempFiles/compare/v2.0.5...dev)
+[Show differences](https://github.com/manuth/TempFiles/compare/v2.0.5...v2.0.6)
 
 ## TempFiles v2.0.5
 ### Fixed
