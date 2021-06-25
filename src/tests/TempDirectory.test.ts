@@ -1,15 +1,16 @@
 import { doesNotReject, doesNotThrow, ok, strictEqual } from "assert";
 import { join, resolve } from "path";
 import { mkdir, pathExists, readFile, remove, stat, writeFile } from "fs-extra";
+import { ITempFileSystemOptions } from "../ITempFileSystemOptions";
 import { TempDirectory } from "../TempDirectory";
 
 /**
- * Registers tests for the `TempDirectory` class.
+ * Registers tests for the {@link TempDirectory `TempDirectory`} class.
  */
 export function TempDirectoryTests(): void
 {
     suite(
-        "TempDirectory",
+        nameof(TempDirectory),
         () =>
         {
             let tempDir: TempDirectory;
@@ -40,7 +41,7 @@ export function TempDirectoryTests(): void
                 });
 
             suite(
-                "General",
+                nameof(TempDirectory),
                 () =>
                 {
                     test(
@@ -64,7 +65,7 @@ export function TempDirectoryTests(): void
                         () => doesNotThrow(() => tempDir.Dispose()));
 
                     test(
-                        "Checking whether temporary directories are deleted by invoking `Dispose`…",
+                        `Checking whether temporary directories are deleted by invoking \`${nameof<TempDirectory>((dir) => dir.Dispose)}\`…`,
                         async () =>
                         {
                             tempDir.Dispose();
@@ -95,7 +96,7 @@ export function TempDirectoryTests(): void
                     if (process.platform === "linux")
                     {
                         test(
-                            "Checking whether the `mode` is applied correctly…",
+                            `Checking whether the \`${nameof<ITempFileSystemOptions>((o) => o.Mode)}\` is applied correctly…`,
                             async () =>
                             {
                                 let mode = 0o007;
@@ -112,7 +113,7 @@ export function TempDirectoryTests(): void
                 });
 
             suite(
-                "MakePath(...string[])",
+                nameof<TempDirectory>((dir) => dir.MakePath),
                 () =>
                 {
                     let path: string[];

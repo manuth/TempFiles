@@ -8,6 +8,9 @@ import { ITempNameOptions } from "./ITempNameOptions";
 
 /**
  * Represents a temporary file-system entry.
+ *
+ * @template T
+ * The type of the options for initializing the file-system entry.
  */
 export abstract class TempFileSystem<T extends ITempFileSystemOptions = ITempFileSystemOptions>
 {
@@ -37,7 +40,7 @@ export abstract class TempFileSystem<T extends ITempFileSystemOptions = ITempFil
     private fullName: string;
 
     /**
-     * Initializes a new instance of the `TempFileSystem` class.
+     * Initializes a new instance of the {@link TempFileSystem `TempFileSystem`} class.
      *
      * @param options
      * The options for the initialization.
@@ -63,7 +66,7 @@ export abstract class TempFileSystem<T extends ITempFileSystemOptions = ITempFil
     }
 
     /**
-     * Gets the options of the file-systme entry.
+     * Gets the options of the file-system entry.
      */
     public get Options(): T
     {
@@ -130,7 +133,7 @@ export abstract class TempFileSystem<T extends ITempFileSystemOptions = ITempFil
      * The options for creating the file-entry name.
      *
      * @returns
-     * A new availa
+     * A newly generated random base-name for a file-system entry.
      */
     public static TempBaseName(options?: ITempBaseNameOptions): string
     {

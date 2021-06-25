@@ -1,14 +1,15 @@
 import { doesNotReject, doesNotThrow, ok, strictEqual } from "assert";
 import { createFile, pathExists, remove, stat, writeFile } from "fs-extra";
+import { ITempFileSystemOptions } from "../ITempFileSystemOptions";
 import { TempFile } from "../TempFile";
 
 /**
- * Registers tests for the `TempFile` class.
+ * Registers tests for the {@link TempFile `TempFile`} class.
  */
 export function TempFileTests(): void
 {
     suite(
-        "TempFile",
+        nameof(TempFile),
         () =>
         {
             let tempFile: TempFile;
@@ -45,11 +46,11 @@ export function TempFileTests(): void
                 async () => writeFile(tempFile.FullName, text));
 
             test(
-                "Checking whether the `TempFile`-object can be disposed…",
+                `Checking whether the \`${nameof(TempFile)}\`-object can be disposed…`,
                 () => doesNotThrow(() => tempFile.Dispose()));
 
             test(
-                "Checking whether the temporary file is deleted by invoking `Dispose`…",
+                `Checking whether the temporary file is deleted by invoking \`${nameof<TempFile>((f) => f.Dispose)}\`…`,
                 async () =>
                 {
                     tempFile.Dispose();
@@ -68,7 +69,7 @@ export function TempFileTests(): void
             if (process.platform === "linux")
             {
                 test(
-                    "Checking whether the `mode` is applied correctly…",
+                    `Checking whether the \`${nameof<ITempFileSystemOptions>((o) => o.Mode)}\` is applied correctly…`,
                     async () =>
                     {
                         let mode = 0o007;

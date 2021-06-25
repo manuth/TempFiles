@@ -6,7 +6,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## TempFiles [Unreleased]
 
-[Show differences](https://github.com/manuth/TempFiles/compare/v2.0.5...dev)
+[Show differences](https://github.com/manuth/TempFiles/compare/v2.0.6...dev)
+
+## TempFiles v2.0.6
+### Added
+  - Support for the Test Explorer UI
+  - Support for `ts-nameof`
+
+### Fixed
+  - Spelling errors
+  - Vulnerabilities in dependencies
+
+### Updated
+  - All dependencies
+
+[Show differences](https://github.com/manuth/TempFiles/compare/v2.0.5...v2.0.6)
 
 ## TempFiles v2.0.5
 ### Fixed

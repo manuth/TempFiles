@@ -8,7 +8,7 @@ import { TempFileSystem } from "./TempFileSystem";
 export class TempFile extends TempFileSystem
 {
     /**
-     * Initializes a new instance of the `TempFile` class.
+     * Initializes a new instance of the {@link TempFile `TempFile`} class.
      *
      * @param options
      * The options for the initialization.
