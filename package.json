@@ -37,7 +37,7 @@
     "lint-ide": "npm run lint || exit 0",
     "test": "mocha",
     "prepare": "npm run patchTypeScript && npm run rebuild",
-    "patchTypeScript": "npx ts-patch install && npx ts-patch --persist"
+    "patchTypeScript": "ts-patch install && ts-patch --persist"
   },
   "dependencies": {
     "fs-extra": "^10.0.0",
