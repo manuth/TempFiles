@@ -136,7 +136,7 @@ export function TempFileSystemTests(): void
                 () =>
                 {
                     test(
-                        "Checking whether a pattern for creationg a base-name can be provided…",
+                        "Checking whether a pattern for creating a base-name can be provided…",
                         () =>
                         {
                             let pattern = /^\d{2,30}test\w*[0-5]{3}$/;

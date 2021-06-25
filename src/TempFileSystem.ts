@@ -66,7 +66,7 @@ export abstract class TempFileSystem<T extends ITempFileSystemOptions = ITempFil
     }
 
     /**
-     * Gets the options of the file-systme entry.
+     * Gets the options of the file-system entry.
      */
     public get Options(): T
     {
@@ -133,7 +133,7 @@ export abstract class TempFileSystem<T extends ITempFileSystemOptions = ITempFil
      * The options for creating the file-entry name.
      *
      * @returns
-     * A new availa
+     * A newly generated random base-name for a file-system entry.
      */
     public static TempBaseName(options?: ITempBaseNameOptions): string
     {

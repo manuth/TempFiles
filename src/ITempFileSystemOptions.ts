@@ -6,7 +6,7 @@ import { ITempNameOptions } from "./ITempNameOptions";
 export interface ITempFileSystemOptions extends ITempNameOptions
 {
     /**
-     * A value indicating whether the file-entry should be kept after exiting the process.
+     * A value indicating whether the file-entry should be kept after the process exits.
      */
     Keep?: boolean;
 

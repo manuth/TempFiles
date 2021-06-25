@@ -1,5 +1,5 @@
 /**
- * Provides options for creating a basname of a temporary file-entry.
+ * Provides options for creating a basename of a temporary file-entry.
  */
 export interface ITempBaseNameOptions
 {
@@ -14,7 +14,7 @@ export interface ITempBaseNameOptions
     Suffix?: string;
 
     /**
-     * Either the name of the base file-entry or a patterh for creating the base name.
+     * Either the name of the base file-entry or a pattern for creating the base name.
      */
     FileNamePattern?: RegExp | string;
 }
