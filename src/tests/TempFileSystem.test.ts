@@ -8,6 +8,7 @@ import { ITempNameOptions } from "../ITempNameOptions";
 import { TempFile } from "../TempFile";
 import { TempFileSystem } from "../TempFileSystem";
 import { ITestFiles } from "./ITestFiles";
+import { TestTempFile } from "./TestTempFileSystem";
 
 /**
  * Registers tests for the {@link TempFileSystem `TempFileSystem<T>`} class.
@@ -15,11 +16,11 @@ import { ITestFiles } from "./ITestFiles";
 export function TempFileSystemTests(): void
 {
     suite(
-        "TempFileSystem",
+        nameof(TempFileSystem),
         () =>
         {
             suite(
-                "General",
+                nameof<TestTempFile>((file) => file.Register),
                 () =>
                 {
                     let files: ITestFiles;
@@ -50,21 +51,21 @@ export function TempFileSystemTests(): void
                         });
 
                     test(
-                        "Checking whether temporary file-entries are deleted automatically on `process.exit`…",
+                        `Checking whether temporary file-entries are deleted automatically on \`${nameof(process)}.${nameof(process.exit)}\`…`,
                         async () =>
                         {
                             ok(!await pathExists(files.file));
                         });
 
                     test(
-                        "Checking whether directories with contents are deleted automatically on `process.exit` as well…",
+                        `Checking whether directories with contents are deleted automatically on \`${nameof(process)}.${nameof(process.exit)}\` as well…`,
                         async () =>
                         {
                             ok(!await pathExists(files.dir));
                         });
 
                     test(
-                        "Checking whether temporary files can be kept even after `process.exit` occurs…",
+                        `Checking whether temporary files can be kept even after \`${nameof(process)}.${nameof(process.exit)}\` occurs…`,
                         async function()
                         {
                             this.timeout(5 * 1000);
@@ -79,7 +80,7 @@ export function TempFileSystemTests(): void
                 });
 
             suite(
-                "Disposed",
+                nameof<TempFileSystem>((fileSystem) => fileSystem.Disposed),
                 () =>
                 {
                     let tempFile: TempFile;
@@ -102,14 +103,14 @@ export function TempFileSystemTests(): void
                         });
 
                     test(
-                        "Checking whether `Disposed` initially equals `false`…",
+                        `Checking whether \`${nameof<TempFileSystem>((fs) => fs.Disposed)}\` initially equals \`${false}\`…`,
                         () =>
                         {
                             strictEqual(tempFile.Disposed, false);
                         });
 
                     test(
-                        "Checking whether `Disposed` equals `true` once it has been disposed…",
+                        `Checking whether \`${nameof<TempFileSystem>((fs) => fs.Disposed)}\` equals \`${true}\` once it has been disposed…`,
                         () =>
                         {
                             tempFile.Dispose();
@@ -118,7 +119,7 @@ export function TempFileSystemTests(): void
                 });
 
             test(
-                "Dispose",
+                nameof<TempFileSystem>((fileSystem) => fileSystem.Dispose),
                 () =>
                 {
                     test(
@@ -132,7 +133,7 @@ export function TempFileSystemTests(): void
                 });
 
             suite(
-                "TempBaseName",
+                nameof(TempFileSystem.TempBaseName),
                 () =>
                 {
                     test(
@@ -181,11 +182,11 @@ export function TempFileSystemTests(): void
                 });
 
             suite(
-                "TempName",
+                nameof(TempFileSystem.TempName),
                 () =>
                 {
                     test(
-                        "Checking whether file-names generated using `TempName` are relative to the system's temp-dir by default…",
+                        `Checking whether file-names generated using \`${nameof(TempFileSystem.TempName)}\` are relative to the system's temp-dir by default…`,
                         () =>
                         {
                             let relativePath = relative(tmpdir(), TempFileSystem.TempName());
@@ -231,7 +232,7 @@ export function TempFileSystemTests(): void
                         });
 
                     test(
-                        "Checking whether paths generated using `TempName` are absolute…",
+                        `Checking whether paths generated using \`${nameof(TempFileSystem.TempName)}\` are absolute…`,
                         () =>
                         {
                             ok(isAbsolute(TempFileSystem.TempName()));
