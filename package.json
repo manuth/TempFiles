@@ -1,6 +1,6 @@
 {
   "name": "@manuth/temp-files",
-  "version": "2.0.6",
+  "version": "2.0.7",
   "description": "Provides the functionality to handle temporary files and directories the object-oriented way.",
   "author": "Manuel Thalmann <m@nuth.ch>",
   "license": "MIT",
@@ -44,27 +44,20 @@
     "randexp": "^0.5.3"
   },
   "devDependencies": {
-    "@manuth/eslint-plugin-typescript": "^3.1.2",
-    "@manuth/tsconfig": "^2.0.2",
-    "@manuth/typescript-eslint-plugin": "^1.4.1",
-    "@types/fs-extra": "^9.0.11",
-    "@types/mocha": "^8.2.2",
-    "@types/node": "^15.12.4",
+    "@manuth/eslint-plugin-typescript": "^3.2.5",
+    "@manuth/tsconfig": "^2.0.3",
+    "@manuth/typescript-eslint-plugin": "^1.4.2",
+    "@types/fs-extra": "^9.0.12",
+    "@types/mocha": "^9.0.0",
+    "@types/node": "^16.7.1",
     "@types/ts-nameof": "^4.2.1",
-    "@typescript-eslint/eslint-plugin": "^4.28.0",
-    "@typescript-eslint/eslint-plugin-tslint": "^4.28.0",
-    "@typescript-eslint/parser": "^4.28.0",
-    "eslint": "^7.29.0",
-    "eslint-plugin-deprecation": "^1.2.1",
-    "eslint-plugin-import": "^2.23.4",
-    "eslint-plugin-jsdoc": "^35.4.0",
-    "mocha": "^9.0.1",
+    "eslint": "^7.32.0",
+    "mocha": "^9.1.0",
     "rimraf": "^3.0.2",
     "source-map-support": "^0.5.19",
     "ts-nameof": "^5.0.0",
-    "ts-node": "^10.0.0",
-    "ts-patch": "^1.3.3",
-    "tslint": "^6.1.3",
-    "typescript": "^4.3.4"
+    "ts-node": "^10.2.1",
+    "ts-patch": "^1.4.3",
+    "typescript": "^4.3.5"
   }
 }

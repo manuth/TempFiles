@@ -6,7 +6,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## TempFiles [Unreleased]
 
-[Show differences](https://github.com/manuth/TempFiles/compare/v2.0.6...dev)
+[Show differences](https://github.com/manuth/TempFiles/compare/v2.0.7...dev)
+
+## TempFiles v2.0.7
+### Fixed
+  - Vulnerabilities in dependencies
+  - Broken publish-scripts
+
+### Added
+  - Support for parallel step-execution in drone-pipelines
+
+### Updated
+  - All dependencies
+  - Settings to disable timeouts for mocha unit-tests
+
+[Show differences](https://github.com/manuth/TempFiles/compare/v2.0.6...v2.0.7)
 
 ## TempFiles v2.0.6
 ### Added
