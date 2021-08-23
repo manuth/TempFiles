@@ -1,6 +1,6 @@
 {
   "name": "@manuth/temp-files",
-  "version": "2.0.6",
+  "version": "2.0.7",
   "description": "Provides the functionality to handle temporary files and directories the object-oriented way.",
   "author": "Manuel Thalmann <m@nuth.ch>",
   "license": "MIT",
@@ -57,7 +57,7 @@
     "source-map-support": "^0.5.19",
     "ts-nameof": "^5.0.0",
     "ts-node": "^10.2.1",
-    "ts-patch": "^1.4.2",
+    "ts-patch": "^1.4.3",
     "typescript": "^4.3.5"
   }
 }
