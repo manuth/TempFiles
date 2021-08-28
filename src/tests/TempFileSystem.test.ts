@@ -148,7 +148,7 @@ export function TempFileSystemTests(): void
                         });
                 });
 
-            test(
+            suite(
                 nameof<TempFileSystem>((fileSystem) => fileSystem.Dispose),
                 () =>
                 {
