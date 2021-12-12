@@ -5,6 +5,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## TempFiles [Unreleased]
+
+[Show differences](https://github.com/manuth/TempFiles/compare/v2.0.8...dev)
+
+## TempFiles v2.0.8
 ### Fixed
   - Vulnerabilities in dependencies
 
@@ -12,7 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - All dependencies
   - Linting environment
 
-[Show differences](https://github.com/manuth/TempFiles/compare/v2.0.7...dev)
+[Show differences](https://github.com/manuth/TempFiles/compare/v2.0.7...v2.0.8)
 
 ## TempFiles v2.0.7
 ### Fixed
