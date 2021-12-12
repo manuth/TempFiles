@@ -6,7 +6,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## TempFiles [Unreleased]
 
-[Show differences](https://github.com/manuth/TempFiles/compare/v2.0.7...dev)
+[Show differences](https://github.com/manuth/TempFiles/compare/v2.0.8...dev)
+
+## TempFiles v2.0.8
+### Fixed
+  - Vulnerabilities in dependencies
+
+### Updated
+  - All dependencies
+  - Linting environment
+
+[Show differences](https://github.com/manuth/TempFiles/compare/v2.0.7...v2.0.8)
 
 ## TempFiles v2.0.7
 ### Fixed
