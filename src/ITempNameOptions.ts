@@ -1,4 +1,4 @@
-import { ITempBaseNameOptions } from "./ITempBaseNameOptions";
+import { ITempBaseNameOptions } from "./ITempBaseNameOptions.js";
 
 /**
  * Provides options for creating a temporary name.

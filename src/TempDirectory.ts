@@ -1,7 +1,9 @@
-import { join } from "path";
-import { emptyDirSync } from "fs-extra";
-import { ITempFileSystemOptions } from "./ITempFileSystemOptions";
-import { TempFileSystem } from "./TempFileSystem";
+import { join } from "node:path";
+import fs from "fs-extra";
+import { ITempFileSystemOptions } from "./ITempFileSystemOptions.js";
+import { TempFileSystem } from "./TempFileSystem.js";
+
+const { emptyDirSync } = fs;
 
 /**
  * Represents a temporary directory.

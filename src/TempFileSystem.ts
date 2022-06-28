@@ -1,10 +1,13 @@
-import { tmpdir } from "os";
-import { join, resolve } from "path";
-import { chmodSync, pathExistsSync, removeSync } from "fs-extra";
-import { randexp } from "randexp";
-import { ITempBaseNameOptions } from "./ITempBaseNameOptions";
-import { ITempFileSystemOptions } from "./ITempFileSystemOptions";
-import { ITempNameOptions } from "./ITempNameOptions";
+import { tmpdir } from "node:os";
+import { join, resolve } from "node:path";
+import fs from "fs-extra";
+import RandExp from "randexp";
+import { ITempBaseNameOptions } from "./ITempBaseNameOptions.js";
+import { ITempFileSystemOptions } from "./ITempFileSystemOptions.js";
+import { ITempNameOptions } from "./ITempNameOptions.js";
+
+const { chmodSync, pathExistsSync, removeSync } = fs;
+const { randexp } = RandExp;
 
 /**
  * Represents a temporary file-system entry.

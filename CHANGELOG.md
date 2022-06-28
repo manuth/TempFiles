@@ -6,7 +6,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## TempFiles [Unreleased]
 
-[Show differences](https://github.com/manuth/TempFiles/compare/v2.0.9...dev)
+[Show differences](https://github.com/manuth/TempFiles/compare/v3.0.0...dev)
+
+## TempFiles v3.0.0
+### Breaking
+  - Updated the package to an ESModule
+
+[Show differences](https://github.com/manuth/TempFiles/compare/v2.0.9...v3.0.0)
 
 ## TempFiles v2.0.9
 ### Fixed

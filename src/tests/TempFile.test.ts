@@ -1,7 +1,9 @@
-import { doesNotReject, doesNotThrow, ok, strictEqual } from "assert";
-import { createFile, pathExists, remove, stat, writeFile } from "fs-extra";
-import { ITempFileSystemOptions } from "../ITempFileSystemOptions";
-import { TempFile } from "../TempFile";
+import { doesNotReject, doesNotThrow, ok, strictEqual } from "node:assert";
+import fs from "fs-extra";
+import { ITempFileSystemOptions } from "../ITempFileSystemOptions.js";
+import { TempFile } from "../TempFile.js";
+
+const { createFile, pathExists, remove, stat, writeFile } = fs;
 
 /**
  * Registers tests for the {@link TempFile `TempFile`} class.

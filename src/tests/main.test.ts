@@ -1,6 +1,6 @@
-import { TempDirectoryTests } from "./TempDirectory.test";
-import { TempFileTests } from "./TempFile.test";
-import { TempFileSystemTests } from "./TempFileSystem.test";
+import { TempDirectoryTests } from "./TempDirectory.test.js";
+import { TempFileTests } from "./TempFile.test.js";
+import { TempFileSystemTests } from "./TempFileSystem.test.js";
 
 suite(
     "TempFiles",

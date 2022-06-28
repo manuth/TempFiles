@@ -1,15 +1,18 @@
-import { ok, strictEqual, throws } from "assert";
-import { ChildProcess, fork } from "child_process";
-import { tmpdir } from "os";
-import { isAbsolute, relative } from "path";
-import { pathExists, remove } from "fs-extra";
-import RandExp = require("randexp");
-import { ITempFileSystemOptions } from "../ITempFileSystemOptions";
-import { ITempNameOptions } from "../ITempNameOptions";
-import { TempFile } from "../TempFile";
-import { TempFileSystem } from "../TempFileSystem";
-import { ITestFiles } from "./ITestFiles";
-import { TestTempFile } from "./TestTempFileSystem";
+import { ok, strictEqual, throws } from "node:assert";
+import { ChildProcess, fork } from "node:child_process";
+import { createRequire } from "node:module";
+import { tmpdir } from "node:os";
+import { isAbsolute, relative } from "node:path";
+import fs from "fs-extra";
+import RandExp from "randexp";
+import { ITempFileSystemOptions } from "../ITempFileSystemOptions.js";
+import { ITempNameOptions } from "../ITempNameOptions.js";
+import { TempFile } from "../TempFile.js";
+import { TempFileSystem } from "../TempFileSystem.js";
+import { ITestFiles } from "./ITestFiles.js";
+import { TestTempFile } from "./TestTempFileSystem.js";
+
+const { pathExists, remove } = fs;
 
 /**
  * Registers tests for the {@link TempFileSystem `TempFileSystem<T>`} class.
@@ -35,7 +38,10 @@ export function TempFileSystemTests(): void
                     async function SpawnTestScript(keep: boolean): Promise<void>
                     {
                         let child: ChildProcess;
-                        child = fork(require.resolve("./createTempFile"), keep ? ["keep"] : []);
+                        child = fork(
+                            createRequire(import.meta.url).resolve("./createTempFile"),
+                            keep ? ["keep"] : []);
+
                         child.on("message", (message: ITestFiles) => files = message);
 
                         return new Promise(
