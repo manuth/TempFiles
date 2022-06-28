@@ -1,7 +1,9 @@
-import { writeFileSync } from "fs-extra";
-import { TempDirectory } from "../TempDirectory";
-import { TempFile } from "../TempFile";
-import { ITestFiles } from "./ITestFiles";
+import fs from "fs-extra";
+import { TempDirectory } from "../TempDirectory.js";
+import { TempFile } from "../TempFile.js";
+import { ITestFiles } from "./ITestFiles.js";
+
+const { writeFileSync } = fs;
 
 let keep = process.argv.slice(1).some((argument) => argument === "keep");
 let tempDir = new TempDirectory({ Keep: keep });

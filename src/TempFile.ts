@@ -1,6 +1,8 @@
-import { ensureFileSync } from "fs-extra";
-import { ITempFileSystemOptions } from "./ITempFileSystemOptions";
-import { TempFileSystem } from "./TempFileSystem";
+import fs from "fs-extra";
+import { ITempFileSystemOptions } from "./ITempFileSystemOptions.js";
+import { TempFileSystem } from "./TempFileSystem.js";
+
+const { ensureFileSync } = fs;
 
 /**
  * Represents a temporary file.

@@ -1,4 +1,4 @@
-import { TempFile } from "../TempFile";
+import { TempFile } from "../TempFile.js";
 
 /**
  * Provides an implementation of the {@link TempFile `TempFile`} class for testing.

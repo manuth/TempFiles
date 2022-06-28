@@ -1,4 +1,4 @@
-import { ITempNameOptions } from "./ITempNameOptions";
+import { ITempNameOptions } from "./ITempNameOptions.js";
 
 /**
  * Provides options for creating a new temporary file-system entry.

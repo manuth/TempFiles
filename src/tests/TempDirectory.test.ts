@@ -1,8 +1,10 @@
 import { doesNotReject, doesNotThrow, ok, strictEqual } from "assert";
 import { join, resolve } from "path";
-import { mkdir, pathExists, readFile, remove, stat, writeFile } from "fs-extra";
-import { ITempFileSystemOptions } from "../ITempFileSystemOptions";
-import { TempDirectory } from "../TempDirectory";
+import fs from "fs-extra";
+import { ITempFileSystemOptions } from "../ITempFileSystemOptions.js";
+import { TempDirectory } from "../TempDirectory.js";
+
+const { mkdir, pathExists, readFile, remove, stat, writeFile } = fs;
 
 /**
  * Registers tests for the {@link TempDirectory `TempDirectory`} class.
