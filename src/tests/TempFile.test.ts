@@ -1,4 +1,4 @@
-import { doesNotReject, doesNotThrow, ok, strictEqual } from "assert";
+import { doesNotReject, doesNotThrow, ok, strictEqual } from "node:assert";
 import fs from "fs-extra";
 import { ITempFileSystemOptions } from "../ITempFileSystemOptions.js";
 import { TempFile } from "../TempFile.js";

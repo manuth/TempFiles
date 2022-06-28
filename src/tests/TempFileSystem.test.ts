@@ -1,8 +1,8 @@
-import { ok, strictEqual, throws } from "assert";
-import { ChildProcess, fork } from "child_process";
-import { createRequire } from "module";
-import { tmpdir } from "os";
-import { isAbsolute, relative } from "path";
+import { ok, strictEqual, throws } from "node:assert";
+import { ChildProcess, fork } from "node:child_process";
+import { createRequire } from "node:module";
+import { tmpdir } from "node:os";
+import { isAbsolute, relative } from "node:path";
 import fs from "fs-extra";
 import RandExp from "randexp";
 import { ITempFileSystemOptions } from "../ITempFileSystemOptions.js";

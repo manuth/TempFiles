@@ -1,5 +1,5 @@
-import { tmpdir } from "os";
-import { join, resolve } from "path";
+import { tmpdir } from "node:os";
+import { join, resolve } from "node:path";
 import fs from "fs-extra";
 import RandExp from "randexp";
 import { ITempBaseNameOptions } from "./ITempBaseNameOptions.js";
