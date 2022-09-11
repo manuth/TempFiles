@@ -1,9 +1,11 @@
 import { join } from "node:path";
 import fs from "fs-extra";
+import path from "upath";
 import { ITempFileSystemOptions } from "./ITempFileSystemOptions.js";
 import { TempFileSystem } from "./TempFileSystem.js";
 
 const { emptyDirSync } = fs;
+const { dirname, normalize } = path;
 
 /**
  * Represents a temporary directory.
@@ -26,6 +28,11 @@ export class TempDirectory extends TempFileSystem
      */
     public override Dispose(): void
     {
+        if (normalize(process.cwd()) === normalize(this.FullName))
+        {
+            process.chdir(dirname(this.FullName));
+        }
+
         super.Dispose();
     }
 

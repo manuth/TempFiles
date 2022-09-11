@@ -47,7 +47,8 @@
   },
   "dependencies": {
     "fs-extra": "^10.1.0",
-    "randexp": "^0.5.3"
+    "randexp": "^0.5.3",
+    "upath": "^2.0.1"
   },
   "devDependencies": {
     "@manuth/eslint-plugin-typescript": "^3.3.1",
