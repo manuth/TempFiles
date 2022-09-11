@@ -43,13 +43,36 @@ export function TempDirectoryTests(): void
                 });
 
             suite(
-                nameof(TempDirectory),
+                nameof(TempDirectory.constructor),
                 () =>
                 {
                     test(
                         "Checking whether directories are created correctly…",
                         async () => ok(await pathExists(tempDir.FullName)));
 
+                    if (process.platform === "linux")
+                    {
+                        test(
+                            `Checking whether the \`${nameof<ITempFileSystemOptions>((o) => o.Mode)}\` is applied correctly…`,
+                            async () =>
+                            {
+                                let mode = 0o007;
+
+                                let dir = new TempDirectory(
+                                    {
+                                        Mode: mode
+                                    });
+
+                                strictEqual((await stat(dir.FullName)).mode & 0o777, mode);
+                                dir.Dispose();
+                            });
+                    }
+                });
+
+            suite(
+                "General",
+                () =>
+                {
                     test(
                         "Checking whether files can be written inside the temporary directory…",
                         async () => doesNotReject(async () => writeFile(tempDir.MakePath(tempFileName), text)));
@@ -61,13 +84,18 @@ export function TempDirectoryTests(): void
                             await writeFile(tempDir.MakePath(tempFileName), text);
                             strictEqual((await readFile(tempDir.MakePath(tempFileName))).toString(), text);
                         });
+                });
 
+            suite(
+                nameof<TempDirectory>((directory) => directory.Dispose),
+                () =>
+                {
                     test(
                         "Checking whether temporary directories can be disposed…",
                         () => doesNotThrow(() => tempDir.Dispose()));
 
                     test(
-                        `Checking whether temporary directories are deleted by invoking \`${nameof<TempDirectory>((dir) => dir.Dispose)}\`…`,
+                        `Checking whether temporary directories do not exist anymore after invoking \`${nameof<TempDirectory>((dir) => dir.Dispose)}\`…`,
                         async () =>
                         {
                             tempDir.Dispose();
@@ -94,24 +122,6 @@ export function TempDirectoryTests(): void
                             await doesNotReject(() => mkdir(tempDir.FullName));
                             return remove(tempDir.FullName);
                         });
-
-                    if (process.platform === "linux")
-                    {
-                        test(
-                            `Checking whether the \`${nameof<ITempFileSystemOptions>((o) => o.Mode)}\` is applied correctly…`,
-                            async () =>
-                            {
-                                let mode = 0o007;
-
-                                let dir = new TempDirectory(
-                                    {
-                                        Mode: mode
-                                    });
-
-                                strictEqual((await stat(dir.FullName)).mode & 0o777, mode);
-                                dir.Dispose();
-                            });
-                    }
                 });
 
             suite(
