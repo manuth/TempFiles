@@ -122,6 +122,14 @@ export function TempDirectoryTests(): void
                             await doesNotReject(() => mkdir(tempDir.FullName));
                             return remove(tempDir.FullName);
                         });
+
+                    test(
+                        `Checking whether a \`${nameof(TempDirectory)}\` can be deleted while it is opened…`,
+                        () =>
+                        {
+                            process.chdir(tempDir.FullName);
+                            doesNotThrow(() => tempDir.Dispose());
+                        });
                 });
 
             suite(
