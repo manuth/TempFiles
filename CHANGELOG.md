@@ -6,7 +6,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## TempFiles [Unreleased]
 
-[Show differences](https://github.com/manuth/TempFiles/compare/v3.0.0...dev)
+[Show differences](https://github.com/manuth/TempFiles/compare/v3.0.1...dev)
+
+## TempFiles v3.0.1
+### Updated
+  - The `TempDirectory.Dispose`-method to allow deletion while the directory is open
+  - All dependencies
+
+[Show differences](https://github.com/manuth/TempFiles/compare/v3.0.0...v3.0.1)
 
 ## TempFiles v3.0.0
 ### Breaking
