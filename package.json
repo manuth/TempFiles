@@ -42,8 +42,8 @@
     "lint": "eslint --max-warnings 0 ./src .eslintrc.cjs",
     "lint-ide": "npm run lint || exit 0",
     "test": "mocha",
-    "prepare": "npm run patchTypeScript && npm run rebuild",
-    "patchTypeScript": "ts-patch install && ts-patch --persist"
+    "prepare": "npm run patch-ts && npm run rebuild",
+    "patch-ts": "ts-patch install"
   },
   "dependencies": {
     "fs-extra": "^10.1.0",
