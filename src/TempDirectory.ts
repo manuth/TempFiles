@@ -5,7 +5,7 @@ import { ITempFileSystemOptions } from "./ITempFileSystemOptions.js";
 import { TempFileSystem } from "./TempFileSystem.js";
 
 const { emptyDirSync } = fs;
-const { dirname, normalize } = path;
+const { dirname, isAbsolute, normalize, relative, sep } = path;
 
 /**
  * Represents a temporary directory.
@@ -28,7 +28,11 @@ export class TempDirectory extends TempFileSystem
      */
     public override Dispose(): void
     {
-        if (normalize(process.cwd()) === normalize(this.FullName))
+        let relativePath = normalize(relative(this.FullName, process.cwd()));
+
+        if (
+            !isAbsolute(relativePath) &&
+            relativePath.split(sep)[0] !== "..")
         {
             process.chdir(dirname(this.FullName));
         }
