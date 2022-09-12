@@ -3,6 +3,7 @@ import { join, resolve } from "node:path";
 import fs from "fs-extra";
 import { ITempFileSystemOptions } from "../ITempFileSystemOptions.js";
 import { TempDirectory } from "../TempDirectory.js";
+import { TempFileSystem } from "../TempFileSystem.js";
 
 const { mkdir, pathExists, readFile, remove, stat, writeFile } = fs;
 
@@ -128,6 +129,16 @@ export function TempDirectoryTests(): void
                         () =>
                         {
                             process.chdir(tempDir.FullName);
+                            doesNotThrow(() => tempDir.Dispose());
+                        });
+
+                    test(
+                        `Checking whether a \`${nameof(TempDirectory)}\` can be deleted while a subdirectory is opened…`,
+                        async () =>
+                        {
+                            let dirName = tempDir.MakePath(TempFileSystem.TempBaseName());
+                            await mkdir(dirName);
+                            process.chdir(dirName);
                             doesNotThrow(() => tempDir.Dispose());
                         });
                 });
