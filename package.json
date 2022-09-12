@@ -1,6 +1,6 @@
 {
   "name": "@manuth/temp-files",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "type": "module",
   "description": "Provides the functionality to handle temporary files and directories the object-oriented way.",
   "author": "Manuel Thalmann <m@nuth.ch>",
