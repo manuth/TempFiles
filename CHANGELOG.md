@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## TempFiles [Unreleased]
+### Updated
+  - The `TempDirectory.Dispose`-method to allow deletion while a directory inside the `TempDirectory` is open
 
 [Show differences](https://github.com/manuth/TempFiles/compare/v3.0.1...dev)
 
