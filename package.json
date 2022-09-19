@@ -54,7 +54,7 @@
     "upath": "^2.0.1"
   },
   "devDependencies": {
-    "@manuth/eslint-plugin-typescript": "^3.3.4",
+    "@manuth/eslint-plugin-typescript": "^4.0.0",
     "@manuth/tsconfig": "^3.0.2",
     "@types/fs-extra": "^9.0.13",
     "@types/mocha": "^9.1.1",
