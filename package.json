@@ -57,7 +57,7 @@
     "@manuth/eslint-plugin-typescript": "^3.3.4",
     "@manuth/tsconfig": "^3.0.2",
     "@types/fs-extra": "^9.0.13",
-    "@types/mocha": "^9.1.1",
+    "@types/mocha": "^10.0.0",
     "@types/node": "^18.7.16",
     "@types/ts-nameof": "^4.2.1",
     "eslint": "^8.23.0",
